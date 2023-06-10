@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-06-09T07:27:13.922Z</updated>
+  <updated>2023-06-10T06:20:49.971Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CS106L-0</title>
+    <link href="http://example.com/2023/06/10/CS106L-0/"/>
+    <id>http://example.com/2023/06/10/CS106L-0/</id>
+    <published>2023-06-10T06:15:14.970Z</published>
+    <updated>2023-06-10T06:20:49.971Z</updated>
+    
+    <content type="html"><![CDATA[<p>​最近想做CMU 15-445，但是因为好久没写C++了，语法全忘完了，直接边学课程边回忆语法的话又没信心，干脆找了这门CS106L课程来复习C++。</p><p>​大致看了一下课程大纲，还是能够比较全面的复习到C++知识点的。</p><p>​开搞！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;​	最近想做CMU 15-445，但是因为好久没写C++了，语法全忘完了，直接边学课程边回忆语法的话又没信心，干脆找了这门CS106L课程来复习C++。&lt;/p&gt;
+&lt;p&gt;​	大致看了一下课程大纲，还是能够比较全面的复习到C++知识点的。&lt;/p&gt;
+&lt;p&gt;​	开搞！&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="C++" scheme="http://example.com/tags/C/"/>
+    
+    <category term="国外计算机课程" scheme="http://example.com/tags/%E5%9B%BD%E5%A4%96%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次关于TreeMap的使用的坑</title>
