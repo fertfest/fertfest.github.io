@@ -4,7 +4,53 @@
   
     
     <entry>
-      <title>CS106L</title>
+      <title>CMU15-445学习记录</title>
+      <link href="/2023/06/22/CMU15-445%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+      <url>/2023/06/22/CMU15-445%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 国外计算机课程 </tag>
+            
+            <tag> Cpp </tag>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>gdb复习</title>
+      <link href="/2023/06/21/gdb/"/>
+      <url>/2023/06/21/gdb/</url>
+      
+        <content type="html"><![CDATA[<p>平常用vscode写代码，debug也用的vscode的带GUI的debug工具。但是CMU15-445这门课推荐用gdb来调试C++程序，这里就简单复习一下gdb。</p><p>CMU15-445官方推荐学习gdb的材料：</p><ul><li><a href="https://www.cs.cmu.edu/~gilpin/tutorial/">https://www.cs.cmu.edu/~gilpin/tutorial/</a></li><li><a href="https://www.techbeamers.com/how-to-use-gdb-top-debugging-tips/">https://www.techbeamers.com/how-to-use-gdb-top-debugging-tips/</a></li><li><a href="https://www.youtube.com/watch?v=PorfLSr3DDI">https://www.youtube.com/watch?v=PorfLSr3DDI</a></li></ul><p>gdb基础：</p><ul><li><p>带调试符号编译程序</p><pre><code class="shell">$ gcc -ggdb -Wall -o gdbtest gdbtest.c# -g: This option adds debugging info in the operating system&#39;s native format.   e.g. stabs, COFF, XCOFF, or DWARF.# -ggdb: It produces debugging information compatible for use by GDB.   i.e. the most expressive format available.   e.g. DWARF 2, stabs, or the native format if none is available.# -Wall: It enables all warnings in the code.</code></pre></li><li><p>用gdb运行程序</p><ul><li>不带参数运行一个程序</li></ul><pre><code class="shell">$ gdb program(gdb) run (r as shortcut key)</code></pre><ul><li>带参数运行一个程序</li></ul><pre><code class="shell">Method-I:  $ gdb --args program arg1 arg2 ... argN    (gdb) rMethod-II:  $ gdb program    (gdb) r arg1 arg2 ... argN</code></pre></li><li><p>打印源代码</p><ul><li>显示一个行号对应的行之后的代码</li></ul><pre><code class="shell">(gdb) list 127         int status = 0;89         if (!isNumber(*ptr))10           return -1;11        else12            while (isNumber(*p))13                status += *p - &#39;0&#39;;14        return status;15    &#125;16</code></pre><ul><li>显示一个函数之后的代码行</li></ul><pre><code class="shell">(gdb) list CheckValidEmail14        return result;15     &#125;1617     void18     CheckValidEmail(char* eMail)19     &#123;20         int rc = isValidEmail(eMail);21         if (rc &amp;lt; 0)22         fputs(&quot;Invalid eMail\n&quot;, stderr);23     &#125;</code></pre></li><li><p>设置断点的六个GDB技巧</p><ul><li><p>对一行或者一个函数设置断点</p><pre><code class="shell">(gdb) break (b as shortcut) linenum# Note: Break will take place at line &lt;linenum&gt; in the current source file.# The current file is the last file whose code appeared in the debug console.(gdb) b function</code></pre></li><li><p>对相对于当前行距离为linenum的行设置断点</p><pre><code class="shell">(gdb) b +linenum</code></pre></li><li><p>对给定文件的函数设置断点</p><pre><code class="shell">(gdb) b filename:function</code></pre></li><li><p>对给定文件的一行设置断点</p><pre><code class="shell">(gdb) b filename:linenum</code></pre></li><li><p>对指定内存地址加断点</p><pre><code class="shell">(gdb) b *(memory address)</code></pre></li><li><p>加条件断点</p><pre><code class="shell">(gdb) b &lt;...&gt; if condition# Note:#1: The symbol &lt;...&gt; implies that you can use any form of breakpoints.#2: Some of them you&#39;ve already seen in the previous tips.    Example: break linenum if variable==1</code></pre></li></ul></li><li><p>四个打印调试信息的gdb指令</p><p>在**&lt;command&gt;**关键词的帮助下，你可以设置多个在某个断点发生时运行的指令，如：</p><pre><code class="shell">(gdb) b CheckValidEmailBreakpoint 1 at 0x8049d87: file ../../test/testgdb.c, line 107.(gdb) command 1# Note:#1: 1 is the breakpoint number.#2: Here you can specify set of commands to execute.#3: To close the command block, use the &quot;end&quot; keyword.&gt;print port&gt;print IPAddr&gt;print User&gt;print Pwd&gt;end(gdb)</code></pre><ul><li><p>在断点发生后打印回溯信息</p><pre><code class="shell">(gdb) backtrace (or bt as shortcut)# OR(gdb) info stack# Note: This option will display a chain of functions (on the output console).</code></pre></li><li><p>在断点之后执行一个函数到结束</p><pre><code class="shell">(gdb) fin#It&#39;ll execute to the point where function returns.</code></pre></li><li><p>打印正在执行的程序的当前栈</p><pre><code class="shell">(gdb) where#Tell you the point where the program died.</code></pre></li><li><p>打印行号</p><pre><code class="shell">(gdb) frame #0  0x0807826e in main () at test.c:18 18        if(is_exist(list, 10) != 0 ) &#123;(gdb)</code></pre></li></ul></li><li><p>六个跟踪变量的gdb技巧</p><ul><li><p>打印标准变量</p><pre><code class="shell">(gdb) p &lt;&lt;variable&gt;&gt;</code></pre></li><li><p>打印结构变量</p><pre><code class="shell">(gdb) p &lt;&lt;structure&gt;&gt;</code></pre></li><li><p>打印指针变量</p><pre><code class="shell">(gdb) p &lt;&lt;*ptr&gt;&gt;</code></pre></li><li><p>打印宏</p><pre><code class="shell">(gdb) p/x DBG_FLAG$1 = 0x00# Note: The x in the p/x would cause to print output in hex format.</code></pre></li><li><p>打印数组</p><pre><code class="shell">Example: If you have defined an integer array as int arr[5] = &#123;1, 2, 3, 4, 5&#125;;Then you can use - (gdb) p arrOutput would be $1 = &#123;1, 2, 3, 4, 5&#125;But the above method would not help if we have a large array of integers say 100 and the need is to print the integers between (96-100) range.For this purpose, you can use following method which works in all cases but is a little complex in nature.e.g. (gdb) p *&amp;arr[96]@5</code></pre></li><li><p>添加监听器</p><pre><code class="shell">(gdb) watch &lt;&lt;variable&gt;&gt;</code></pre></li></ul></li><li><p>继续执行，步入和进入下一行操作</p><ul><li><p>继续执行</p><pre><code class="shell">&lt;c&gt;</code></pre></li><li><p>执行下一行</p><pre><code class="shell">&lt;n&gt;</code></pre></li><li><p>步入函数</p><pre><code class="shell">&lt;s&gt;</code></pre></li></ul></li><li><p>跳过&#x2F;忽略断点</p><p>首先使用&lt;infor breakpoint&gt;命令检查你想忽略的断点的索引</p><pre><code class="shell">(gdb) break test.cpp:18Breakpoint 1 at 0x8005cd: file test.cpp, line 18. (gdb) info breakpointsNum     Type           Disp Enb Address            What1       breakpoint     keep y   0x00000000008005cd in main() at test.cpp:18</code></pre><p>假设想忽略该断点1000次</p><pre><code class="shell">(gdb) ignore 1 1000Will ignore next 1000 crossings of breakpoint 1.(gdb) runStarting program: /home/sample/src/test Program received signal SIGSEGV, Segmentation fault.0x00000000008005cd in main () at test.cpp:1818            i = *ptr++;(gdb) info breakpointsNum     Type           Disp Enb Address            What1       breakpoint     keep y   0x00000000008005cd in main() at test.cpp:18    breakpoint already hit 10 times    ignore next 990 hits(gdb)</code></pre></li><li><p>移除断点和退出gdb</p><ul><li><p>删除断点</p><pre><code class="shell">(gdb) d &lt;&lt;breakpoint num&gt;&gt;</code></pre></li><li><p>退出gdb调试器</p><pre><code class="shell">(gdb) q</code></pre></li></ul></li><li><p>打开gdb TUI</p><pre><code class="shell">C-x a</code></pre></li><li><p>命令含义不明确</p><pre><code class="shell">C-x 2C-x 1</code></pre></li><li><p>查看float 寄存器组</p><pre><code class="shell">tui reg float</code></pre></li><li><p>查看历史命令</p><pre><code class="shell">C-p 查看时间更早的一条命令C-n 查看时间更晚的一条命令</code></pre></li><li><p>使用python interpreter执行命令</p><p>注意这是在gdb中，该python interpreter与gdb紧密联系！</p><pre><code class="shell">python &lt;command&gt;</code></pre><ul><li><p>查看当前gdb进程设置的断点</p><pre><code class="shell">python print (gdb.breakpoints())</code></pre></li><li></li></ul></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Cpp </tag>
+            
+            <tag> C </tag>
+            
+            <tag> gdb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CS106L学习记录</title>
       <link href="/2023/06/10/CS106L-0/"/>
       <url>/2023/06/10/CS106L-0/</url>
       

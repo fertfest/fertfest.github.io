@@ -1,0 +1,291 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>gdb复习</title><meta name="description" content="热爱，专注"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="平常用vscode写代码，debug也用的vscode的带GUI的debug工具。但是CMU15-445这门课推荐用gdb来调试C++程序，这里就简单复习一下gdb。
+CMU15-445官方推荐学习gdb的材料：
+
+https://www.cs.cmu.edu/~gilpin/tutorial/
+https://www.techbeamers.com/how-to-use-gdb-top-debugging-tips/
+https://www.youtube.com/watch?v=PorfLSr3DDI
+
+gdb基础：
+
+带调试符号编译程序
+$ gcc -ggdb -Wall -o gdbtest gdbtest.c
+
+# -g: This option adds debugging info in th.."><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="fertfest的个人记录" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">fertfest's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">gdb复习</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile is-hidden"></div><div class="column is-9"><header class="my-4"><a href="/tags/Cpp"><i class="tag post-item-tag">Cpp</i></a><a href="/tags/C"><i class="tag post-item-tag">C</i></a><a href="/tags/gdb"><i class="tag post-item-tag">gdb</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">gdb复习</h1><time class="has-text-grey" datetime="2023-06-21T03:50:51.741Z">2023-06-21</time><article class="mt-2 post-content"><p>平常用vscode写代码，debug也用的vscode的带GUI的debug工具。但是CMU15-445这门课推荐用gdb来调试C++程序，这里就简单复习一下gdb。</p>
+<p>CMU15-445官方推荐学习gdb的材料：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~gilpin/tutorial/">https://www.cs.cmu.edu/~gilpin/tutorial/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.techbeamers.com/how-to-use-gdb-top-debugging-tips/">https://www.techbeamers.com/how-to-use-gdb-top-debugging-tips/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=PorfLSr3DDI">https://www.youtube.com/watch?v=PorfLSr3DDI</a></li>
+</ul>
+<p>gdb基础：</p>
+<ul>
+<li><p>带调试符号编译程序</p>
+<pre><code class="shell">$ gcc -ggdb -Wall -o gdbtest gdbtest.c
+
+# -g: This option adds debugging info in the operating system&#39;s native format.
+   e.g. stabs, COFF, XCOFF, or DWARF.
+
+# -ggdb: It produces debugging information compatible for use by GDB.
+   i.e. the most expressive format available.
+   e.g. DWARF 2, stabs, or the native format if none is available.
+
+# -Wall: It enables all warnings in the code.
+</code></pre>
+</li>
+<li><p>用gdb运行程序</p>
+<ul>
+<li>不带参数运行一个程序</li>
+</ul>
+<pre><code class="shell">$ gdb program
+
+(gdb) run (r as shortcut key)
+</code></pre>
+<ul>
+<li>带参数运行一个程序</li>
+</ul>
+<pre><code class="shell">Method-I:
+  $ gdb --args program arg1 arg2 ... argN  
+  (gdb) r
+
+Method-II:
+  $ gdb program  
+  (gdb) r arg1 arg2 ... argN
+</code></pre>
+</li>
+<li><p>打印源代码</p>
+<ul>
+<li>显示一个行号对应的行之后的代码</li>
+</ul>
+<pre><code class="shell">(gdb) list 12
+7         int status = 0;
+8
+9         if (!isNumber(*ptr))
+10           return -1;
+11        else
+12            while (isNumber(*p))
+13                status += *p - &#39;0&#39;;
+14        return status;
+15    &#125;
+16
+</code></pre>
+<ul>
+<li>显示一个函数之后的代码行</li>
+</ul>
+<pre><code class="shell">(gdb) list CheckValidEmail
+14        return result;
+15     &#125;
+16
+17     void
+18     CheckValidEmail(char* eMail)
+19     &#123;
+20         int rc = isValidEmail(eMail);
+21         if (rc &amp;lt; 0)
+22         fputs(&quot;Invalid eMail\n&quot;, stderr);
+23     &#125;
+</code></pre>
+</li>
+<li><p>设置断点的六个GDB技巧</p>
+<ul>
+<li><p>对一行或者一个函数设置断点</p>
+<pre><code class="shell">(gdb) break (b as shortcut) linenum
+# Note: Break will take place at line &lt;linenum&gt; in the current source file.
+# The current file is the last file whose code appeared in the debug console.
+(gdb) b function
+</code></pre>
+</li>
+<li><p>对相对于当前行距离为linenum的行设置断点</p>
+<pre><code class="shell">(gdb) b +linenum
+</code></pre>
+</li>
+<li><p>对给定文件的函数设置断点</p>
+<pre><code class="shell">(gdb) b filename:function
+</code></pre>
+</li>
+<li><p>对给定文件的一行设置断点</p>
+<pre><code class="shell">(gdb) b filename:linenum
+</code></pre>
+</li>
+<li><p>对指定内存地址加断点</p>
+<pre><code class="shell">(gdb) b *(memory address)
+</code></pre>
+</li>
+<li><p>加条件断点</p>
+<pre><code class="shell">(gdb) b &lt;...&gt; if condition
+
+# Note:
+#1: The symbol &lt;...&gt; implies that you can use any form of breakpoints.
+#2: Some of them you&#39;ve already seen in the previous tips.
+    Example: break linenum if variable==1
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>四个打印调试信息的gdb指令</p>
+<p>在**&lt;command&gt;**关键词的帮助下，你可以设置多个在某个断点发生时运行的指令，如：</p>
+<pre><code class="shell">(gdb) b CheckValidEmail
+Breakpoint 1 at 0x8049d87: file ../../test/testgdb.c, line 107.
+(gdb) command 1
+# Note:
+#1: 1 is the breakpoint number.
+#2: Here you can specify set of commands to execute.
+#3: To close the command block, use the &quot;end&quot; keyword.
+&gt;print port
+&gt;print IPAddr
+&gt;print User
+&gt;print Pwd
+&gt;end
+(gdb)
+</code></pre>
+<ul>
+<li><p>在断点发生后打印回溯信息</p>
+<pre><code class="shell">(gdb) backtrace (or bt as shortcut)
+# OR
+(gdb) info stack
+
+# Note: This option will display a chain of functions (on the output console).
+</code></pre>
+</li>
+<li><p>在断点之后执行一个函数到结束</p>
+<pre><code class="shell">(gdb) fin
+#It&#39;ll execute to the point where function returns.
+</code></pre>
+</li>
+<li><p>打印正在执行的程序的当前栈</p>
+<pre><code class="shell">(gdb) where
+#Tell you the point where the program died.
+</code></pre>
+</li>
+<li><p>打印行号</p>
+<pre><code class="shell">(gdb) frame
+ #0  0x0807826e in main () at test.c:18
+ 18        if(is_exist(list, 10) != 0 ) &#123;
+(gdb)
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>六个跟踪变量的gdb技巧</p>
+<ul>
+<li><p>打印标准变量</p>
+<pre><code class="shell">(gdb) p &lt;&lt;variable&gt;&gt;
+</code></pre>
+</li>
+<li><p>打印结构变量</p>
+<pre><code class="shell">(gdb) p &lt;&lt;structure&gt;&gt;
+</code></pre>
+</li>
+<li><p>打印指针变量</p>
+<pre><code class="shell">(gdb) p &lt;&lt;*ptr&gt;&gt;
+</code></pre>
+</li>
+<li><p>打印宏</p>
+<pre><code class="shell">(gdb) p/x DBG_FLAG
+$1 = 0x00
+
+# Note: The x in the p/x would cause to print output in hex format.
+</code></pre>
+</li>
+<li><p>打印数组</p>
+<pre><code class="shell">Example: If you have defined an integer array as int arr[5] = &#123;1, 2, 3, 4, 5&#125;;
+Then you can use - (gdb) p arr
+Output would be $1 = &#123;1, 2, 3, 4, 5&#125;
+
+But the above method would not help if we have a large array of integers say 100 and the need is to print the integers between (96-100) range.
+For this purpose, you can use following method which works in all cases but is a little complex in nature.
+e.g. (gdb) p *&amp;arr[96]@5
+</code></pre>
+</li>
+<li><p>添加监听器</p>
+<pre><code class="shell">(gdb) watch &lt;&lt;variable&gt;&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>继续执行，步入和进入下一行操作</p>
+<ul>
+<li><p>继续执行</p>
+<pre><code class="shell">&lt;c&gt;
+</code></pre>
+</li>
+<li><p>执行下一行</p>
+<pre><code class="shell">&lt;n&gt;
+</code></pre>
+</li>
+<li><p>步入函数</p>
+<pre><code class="shell">&lt;s&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>跳过&#x2F;忽略断点</p>
+<p>首先使用&lt;infor breakpoint&gt;命令检查你想忽略的断点的索引</p>
+<pre><code class="shell">(gdb) break test.cpp:18
+Breakpoint 1 at 0x8005cd: file test.cpp, line 18.
+ 
+(gdb) info breakpoints
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x00000000008005cd in main() at test.cpp:18
+</code></pre>
+<p>假设想忽略该断点1000次</p>
+<pre><code class="shell">(gdb) ignore 1 1000
+Will ignore next 1000 crossings of breakpoint 1.
+(gdb) run
+Starting program: /home/sample/src/test
+ 
+Program received signal SIGSEGV, Segmentation fault.
+0x00000000008005cd in main () at test.cpp:18
+18            i = *ptr++;
+(gdb) info breakpoints
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x00000000008005cd in main() at test.cpp:18
+    breakpoint already hit 10 times
+    ignore next 990 hits
+(gdb)
+</code></pre>
+</li>
+<li><p>移除断点和退出gdb</p>
+<ul>
+<li><p>删除断点</p>
+<pre><code class="shell">(gdb) d &lt;&lt;breakpoint num&gt;&gt;
+</code></pre>
+</li>
+<li><p>退出gdb调试器</p>
+<pre><code class="shell">(gdb) q
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>打开gdb TUI</p>
+<pre><code class="shell">C-x a
+</code></pre>
+</li>
+<li><p>命令含义不明确</p>
+<pre><code class="shell">C-x 2
+C-x 1
+</code></pre>
+</li>
+<li><p>查看float 寄存器组</p>
+<pre><code class="shell">tui reg float
+</code></pre>
+</li>
+<li><p>查看历史命令</p>
+<pre><code class="shell">C-p 查看时间更早的一条命令
+C-n 查看时间更晚的一条命令
+</code></pre>
+</li>
+<li><p>使用python interpreter执行命令</p>
+<p>注意这是在gdb中，该python interpreter与gdb紧密联系！</p>
+<pre><code class="shell">python &lt;command&gt;
+</code></pre>
+<ul>
+<li><p>查看当前gdb进程设置的断点</p>
+<pre><code class="shell">python print (gdb.breakpoints())
+</code></pre>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2023/06/22/CMU15-445%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="CMU15-445学习记录"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">上一页: CMU15-445学习记录</span></a><a class="button is-default" href="/2023/06/10/CS106L-0/" title="CS106L学习记录"><span class="has-text-weight-semibold">下一页: CS106L学习记录</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="fertfest/fertfest.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/fertfest"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> fertfest 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span>清醒时做事，迷茫时读书，独处时思考，烦躁时运动，焦虑时行动，得意时淡然，失意时坦然，忙碌时专注，闲暇时蓄力。</span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
