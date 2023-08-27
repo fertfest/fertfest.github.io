@@ -6,37 +6,7 @@ LabsLab 1A. Java Compilation &amp;amp; Development两个简单的demo，经典�
 int x = 0;
         int total = 0;
         while (x &amp;lt; 10) &amp;#123;
-            System.out.print(total ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/08/25/CS61B/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Java"><i class="tag post-item-tag">Java</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/06/09/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8ETreeMap%E7%9A%84%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91/">记一次关于TreeMap的使用的坑</a></h2><time class="has-text-grey" datetime="2023-06-09T06:56:42.089Z">2023-06-09</time><p class="is-flex-grow-2 mt-2">今天在做《牛客算法必刷101》的最后一题时遇到了一个坑。原题目这里就不赘述了，原题目地址：
-https://www.nowcoder.com/practice/93aacb4a887b46d897b00823f30bfea1?tpId=295&amp;amp;tqId=1006014&amp;amp;ru=/exam/oj&amp;amp;qru=/ta/format-top101/question-ranking&amp;amp;sourceUrl=%2Fexam%2Foj
-定义TreeMap&amp;lt;int[], Integer&amp;gt; orderedMap ,要求orderedMap（下文简称map）的键长度为3，并且给出map的完整定义：
-private TreeMap&amp;lt;int[], Integer&amp;gt; orderedMa..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/06/09/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8ETreeMap%E7%9A%84%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Java"><i class="tag post-item-tag">Java</i></a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80"><i class="tag post-item-tag">计算机基础</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/06/09/%E5%9C%A8Java%E4%B8%AD%EF%BC%8C0.4%E8%A2%AB%E4%BC%A0%E5%85%A5System.out.print%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/">在Java中，0.4被传入System.out.print时发生了什么？</a></h2><time class="has-text-grey" datetime="2023-06-09T06:55:14.609Z">2023-06-09</time><p class="is-flex-grow-2 mt-2">在看JavaGuide复习Java基础知识的时候，看到了浮点数表示的章节。突然想知道，为什么0.4明明不能被准确表示，但是在传入System.out.println时显示到控制台的却是0.4呢？
-public class Main
-&amp;#123;
-    public static void main(String[] args) &amp;#123;
-        double d1 = 0.4;
-        System.out.println(d1);//打印结果：0.4
-    &amp;#125;
-&amp;#125;
-
-在继续阅读之前，我希望你能够具备一定的前置知识：
-
-了解浮点数是如何在计算机中表示的
-了解不是所有实数都能被准确表示
-0.4就是不能被准确表示的数之一
-了解BigDecimal类
-
-我们可以通过Bi..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/06/09/%E5%9C%A8Java%E4%B8%AD%EF%BC%8C0.4%E8%A2%AB%E4%BC%A0%E5%85%A5System.out.print%E6%97%B6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Java"><i class="tag post-item-tag">Java</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/06/09/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8BJava%E8%AF%AD%E6%B3%95/">牛客在线编程之Java语法</a></h2><time class="has-text-grey" datetime="2023-06-09T06:47:14.049Z">2023-06-09</time><p class="is-flex-grow-2 mt-2">牛客Java语法篇这些题大体都没什么难度，做这些题的目的是为了熟悉Java类库。绝大部分题都是直接贴上答案，但是少部分题的某些知识有所遗忘，我也会将我的学习过程写到对应题目处。
-1. 类型转换public static int typeConversion(double d)&amp;#123;
-    //write your code here......
-    return (int) d;
-&amp;#125;
-
-2. 简单运算int bigger = a &amp;gt; b ? a : b;
-int smaller = a;
-if (bigger == a)
-    smaller = b;
-System.out.print(bigger + smaller);
-System.out.print(&amp;quot; &amp;qu..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/06/09/%E7%89%9B%E5%AE%A2%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E4%B9%8BJava%E8%AF%AD%E6%B3%95/">更多</a></section></article></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">3</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+            System.out.print(total ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/08/25/CS61B/">更多</a></section></article></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">3</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
 
 window.addEventListener('resize', $claudia.throttle(function () {
     var images = document.querySelectorAll('.js-img-fadeIn')

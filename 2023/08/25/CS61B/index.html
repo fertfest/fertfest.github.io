@@ -1,0 +1,311 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>CS 61B学习记录</title><meta name="description" content="热爱，专注"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="简介这是UCB开给计算机系本科生的一门数据结构与算法课，看了一下@PKUFlyingPig的介绍觉得挺有趣的，同时也想让自己的算法更扎实一点，遂决定刷一下这门课。我选择学习该课程的18年春季的存档，虽然是18年开设的，但是官方给出的gradescope邀请码还能使用，在这里感谢这些愿意开源计算机课程的老师。
+LabsLab 1A. Java Compilation &amp;amp; Development两个简单的demo，经典的Hello World和打印0~9的累加。
+打印0~9的累加（省略不重要的部分）：
+int x = 0;
+        int total = 0;
+        while (x &amp;lt; 10) &amp;#123;
+            System.out.print(total .."><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="fertfest的个人记录" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">fertfest's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">CS 61B学习记录</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Labs"><span class="toc-text">Labs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-1"><span class="toc-text">Lab 1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-Java-Compilation-amp-Development"><span class="toc-text">A. Java Compilation &amp; Development</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-Git-amp-Local-Repos"><span class="toc-text">B. Git &amp; Local Repos</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-Git-Exercise"><span class="toc-text">C. Git Exercise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-E"><span class="toc-text">D, E</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Leap-Year"><span class="toc-text">F. Leap Year</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-2"><span class="toc-text">Lab 2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-3"><span class="toc-text">Lab 3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IntelliJ%E4%B8%AD%E8%BF%90%E8%A1%8CJUnit%E6%B5%8B%E8%AF%95"><span class="toc-text">IntelliJ中运行JUnit测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lab-4"><span class="toc-text">Lab 4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Projects"><span class="toc-text">Projects</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Project-0"><span class="toc-text">Project 0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Project-1A"><span class="toc-text">Project 1A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Project-1B"><span class="toc-text">Project 1B</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%B8%80%EF%BC%9ADeque%E6%8E%A5%E5%8F%A3"><span class="toc-text">任务一：Deque接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BA%8C%EF%BC%9ATask-2-wordToDeque"><span class="toc-text">任务二：Task 2: wordToDeque</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%B8%89%EF%BC%9AisPalindrome"><span class="toc-text">任务三：isPalindrome</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%9B%9B%EF%BC%9A%E9%80%9A%E7%94%A8Palindrome%E5%92%8COffByOne"><span class="toc-text">任务四：通用Palindrome和OffByOne</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BA%94%EF%BC%9AOffByN"><span class="toc-text">任务五：OffByN</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HWs"><span class="toc-text">HWs</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/Java"><i class="tag post-item-tag">Java</i></a><a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><i class="tag post-item-tag">数据结构与算法</i></a><a href="/tags/%E5%9B%BD%E5%A4%96%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%AF%BE%E7%A8%8B"><i class="tag post-item-tag">国外计算机课程</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">CS 61B学习记录</h1><time class="has-text-grey" datetime="2023-08-25T09:34:28.126Z">2023-08-25</time><article class="mt-2 post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这是UCB开给计算机系本科生的一门数据结构与算法课，看了一下<a target="_blank" rel="noopener" href="https://github.com/PKUFlyingPig">@PKUFlyingPig</a>的介绍觉得挺有趣的，同时也想让自己的算法更扎实一点，遂决定刷一下这门课。我选择学习该课程的18年春季的存档，虽然是18年开设的，但是官方给出的<a href="gradescope.com">gradescope</a>邀请码还能使用，在这里感谢这些愿意开源计算机课程的老师。</p>
+<h2 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h2><h3 id="Lab-1"><a href="#Lab-1" class="headerlink" title="Lab 1"></a>Lab 1</h3><h4 id="A-Java-Compilation-amp-Development"><a href="#A-Java-Compilation-amp-Development" class="headerlink" title="A. Java Compilation &amp; Development"></a>A. Java Compilation &amp; Development</h4><p>两个简单的demo，经典的Hello World和打印0~9的累加。</p>
+<p>打印0~9的累加（省略不重要的部分）：</p>
+<pre><code class="java">int x = 0;
+        int total = 0;
+        while (x &lt; 10) &#123;
+            System.out.print(total + &quot; &quot;);
+            x = x + 1;
+            total += x;
+        &#125;
+</code></pre>
+<h4 id="B-Git-amp-Local-Repos"><a href="#B-Git-amp-Local-Repos" class="headerlink" title="B. Git &amp; Local Repos"></a>B. Git &amp; Local Repos</h4><p>阅读Sarah Kim写的<a target="_blank" rel="noopener" href="https://sp18.datastructur.es/materials/guides/using-git.html">Using Git Guide</a>的A-C部分。</p>
+<h4 id="C-Git-Exercise"><a href="#C-Git-Exercise" class="headerlink" title="C. Git Exercise"></a>C. Git Exercise</h4><p>练习了一下init、add、commit操作。</p>
+<h4 id="D-E"><a href="#D-E" class="headerlink" title="D, E"></a>D, E</h4><p>都是一些设置git仓库的操作，这里省略。</p>
+<h4 id="F-Leap-Year"><a href="#F-Leap-Year" class="headerlink" title="F. Leap Year"></a>F. Leap Year</h4><p>Leap Year，即闰年，又是一个经典的入门级算法。</p>
+<pre><code class="java">/** 
+     * Test a year is whether or not a leap year.
+     * @param year year to be tested*/
+    public static boolean isLeapYear(int year) &#123;
+      return year%400 == 0 || (year%4 == 0 &amp;&amp; year%100 != 0); 
+    &#125;
+</code></pre>
+<h3 id="Lab-2"><a href="#Lab-2" class="headerlink" title="Lab 2"></a>Lab 2</h3><p>这个实验主要过程是进行调试练习并且为IntList.java创建方法。</p>
+<p>条件断点：</p>
+<ul>
+<li>右键点击一个断点符号（在我的版本里是一个红色的圆圈），然后可以在condition栏里输入想要的条件断点表达式。</li>
+</ul>
+<p>Destructive vs. Non-Destructive:</p>
+<ul>
+<li>Destructive(或者mutative)方法指会修改原来的对象的方法（参数或者类成员），而Non-Destructive方法相反。</li>
+</ul>
+<p>实现InitList的dcatenate和catenate方法，这里我都用递归的方法实现:</p>
+<ul>
+<li><p>dcatenate:</p>
+<pre><code class="java">/**
+     * Returns a list consisting of the elements of A followed by the
+     * *  elements of B.  May modify items of A. Don&#39;t use &#39;new&#39;.
+     */
+public static IntList dcatenate(IntList A, IntList B) &#123;
+        //TODO:  fill in method
+        if (A == null &amp;&amp; B == null) &#123;
+            return null;
+        &#125;
+
+        if (A == null) &#123;
+            return new IntList(B.first, B.rest);
+        &#125;
+
+        if (B == null) &#123;
+            return A;
+        &#125;
+
+        A.rest = dcatenate(A.rest, B);
+        return A;
+    &#125;
+</code></pre>
+</li>
+<li><p>catenate:</p>
+<pre><code class="java">/**
+     * Returns a list consisting of the elements of A followed by the
+     * * elements of B.  May NOT modify items of A.  Use &#39;new&#39;.
+     */
+    public static IntList catenate(IntList A, IntList B) &#123;
+        //TODO:  fill in method
+        if (A == null &amp;&amp; B == null) &#123;
+            return null;
+        &#125;
+
+        if (A == null) &#123;
+            return new IntList(B.first, catenate(null, B.rest));
+        &#125;
+
+        return new IntList(A.first, catenate(A.rest, B));
+    &#125;
+</code></pre>
+</li>
+</ul>
+<h3 id="Lab-3"><a href="#Lab-3" class="headerlink" title="Lab 3"></a>Lab 3</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><ul>
+<li><p>什么是JUnit？</p>
+<p>JUnit是Java专用的单元测试框架。</p>
+</li>
+<li><p>什么是单元测试？</p>
+<p>如果你可以将你的程序分为许多个单元(Unit)，那么你可以对这些单元分别进行测试，这就叫做单元测试。单元测试可以在完成整个程序前对每个单元进行边缘测试等，保证程序的健壮性。</p>
+</li>
+<li><p>JUnit语法</p>
+<ul>
+<li>在每一个测试方法前加上@Test注解。</li>
+<li><code>assertEquals</code>是JUnit中一个常用的方法，它测试一个值是否与它所被期望的值相等。类似的还有<code>assertTrue</code>等。</li>
+</ul>
+</li>
+</ul>
+<h4 id="IntelliJ中运行JUnit测试"><a href="#IntelliJ中运行JUnit测试" class="headerlink" title="IntelliJ中运行JUnit测试"></a>IntelliJ中运行JUnit测试</h4><ul>
+<li><p>执行单个测试，直接右键点击带有@Test注解的方法的签名的左边的绿色小三角，然后运行测试即可。</p>
+<p><img src="C:\Users\chen2\AppData\Roaming\Typora\typora-user-images\image-20230826161028627.png" alt="image-20230826161028627"></p>
+</li>
+<li><p>执行一个测试类中的所有单元测试，可以像运行带main方法的类一样。</p>
+<p><img src="C:\Users\chen2\AppData\Roaming\Typora\typora-user-images\image-20230826161155756.png" alt="image-20230826161155756"></p>
+</li>
+</ul>
+<h3 id="Lab-4"><a href="#Lab-4" class="headerlink" title="Lab 4"></a>Lab 4</h3><p>lab4是为了让UCB在读同学与其他同学进行交流，这里我跳过它了。除此之外还有教如何在IntelliJ中永久地设置库和SDK，设置后不用每一次打开项目都要添加一次库文件夹了。</p>
+<p><img src="C:\Users\chen2\AppData\Roaming\Typora\typora-user-images\image-20230827124825038.png" alt="image-20230827124825038"></p>
+<p>在这里添加库文件夹的路径即可。</p>
+<h2 id="Projects"><a href="#Projects" class="headerlink" title="Projects"></a>Projects</h2><h3 id="Project-0"><a href="#Project-0" class="headerlink" title="Project 0"></a>Project 0</h3><p>这个项目完成之后可以模拟多种天体运动的情况，虽然是很简单的模拟，但是也非常有意思。由于项目中涉及到的数据结构相关的知识很少，所以这里不过多赘述。</p>
+<h3 id="Project-1A"><a href="#Project-1A" class="headerlink" title="Project 1A"></a>Project 1A</h3><p>此项目将使用list和array实现一个双端队列。</p>
+<p>双端队列API：</p>
+<ul>
+<li><code>public void addFirst(T item)</code></li>
+<li><code>public void addLast(T item)</code></li>
+<li><code>public boolean isEmpty()</code></li>
+<li><code>public int size()</code></li>
+<li><code>public void printDeque()</code></li>
+<li><code>public T removeFirst()</code></li>
+<li><code>public T removeLast()</code></li>
+<li><code>public T get(int index)</code></li>
+</ul>
+<p>链表双端队列：</p>
+<ul>
+<li><p>为了<code>add</code>和<code>remove</code>操作能在常数时间内完成，可以记录链表的头结点和尾结点为head和tail。</p>
+</li>
+<li><p>用<code>size</code>来记录队列当前元素个数，每次更改队列大小时需要修改<code>size</code>。</p>
+</li>
+<li><p>除了以上提到的方法，还需要实现<code>public LinkedListDeque()</code>和<code>public T getRecursive(int index)</code></p>
+</li>
+<li><p>链式结构都需要定义节点类型，这里我们使用双链表来实现双端队列，结点类型以<code>LinkedListDeque</code>内部类的形式定义：</p>
+<pre><code class="java">public class LinkedListDeque&lt;T&gt; &#123;
+    private class Node &#123;
+        public T data = null;
+        public Node next = null;
+        public Node prev = null;
+
+        public Node() &#123;&#125;
+
+        public Node(T data) &#123;
+            this.data = data;
+        &#125;
+
+        public Node(T data, Node next, Node prev) &#123;
+            this.data = data;
+            this.next = next;
+            this.prev = prev;
+        &#125;
+    &#125;
+    //省略其它内容
+&#125;
+</code></pre>
+</li>
+<li><p>实现<code>addFirst</code>:</p>
+<ul>
+<li>参数可以为null。</li>
+<li>size要自增。</li>
+<li>如果size为0，构造新节点，head和tail都指向新节点。</li>
+<li>否则构造新节点，新节点的next指向head，head的prev指向新节点，并且head指向新节点。</li>
+</ul>
+</li>
+<li><p>实现<code>removeFirst</code>:</p>
+<ul>
+<li>如果没有元素，返回null。</li>
+<li>否则size–。</li>
+<li>如果size为1，记录head的data为res，head和tail都变成null，返回res。</li>
+<li>记录head的data为res，head&#x3D;head.next，head的prev置空。</li>
+</ul>
+</li>
+<li><p>实现<code>get</code>:</p>
+<ul>
+<li>如果size为0，返回null。</li>
+<li>如果index&lt;0或者index&gt;&#x3D;size，抛出异常，指出索引不正确。</li>
+<li>从head开始查找。</li>
+</ul>
+</li>
+<li><p>实现<code>getRecursive</code>:</p>
+<ul>
+<li>边缘情况与<code>get</code>类似。</li>
+<li>当index为0时可以直接返回链表首元素的data。</li>
+<li>一个长度为s的链表l，要获取l的第i个元素，可以获取除l首元素后剩下的链表的第i-1个元素。</li>
+</ul>
+</li>
+</ul>
+<p>数组双端队列：</p>
+<ul>
+<li><p>数组长度用length记录，队列长度用size记录。</p>
+</li>
+<li><p><code>add</code>和<code>move</code>要在常数时间内完成，可以用front和end分别记录队列的头和尾。</p>
+</li>
+<li><p>由于我们将数组当做环形来对待，所以需要仔细考虑队空和队满的状态。假设当front&#x3D;&#x3D;end时队列里有一个元素，那么当front在end后一个位置 (即(end+1)%length &#x3D;&#x3D; front时) 时队列可能为空，也可能为满，我们可以用size是否为0来判断。</p>
+</li>
+<li><p><code>get</code>和<code>size</code>必须在常数时间内完成。get时记得要对index+front取余。</p>
+</li>
+<li><p>数组初始化大小为8。</p>
+</li>
+<li><p>扩容&#x2F;减容操作：</p>
+<ul>
+<li>扩容发生在数组被填满，即size&#x3D;&#x3D;length，且有新元素进入队列时。数组容量扩大为原来的两倍。<ul>
+<li>如果是进入队头，让新元素填入新数组索引为0的位置，然后原数组front<del>end的元素依次填入新数组1</del>size的位置。</li>
+<li>如果是进入队尾，让原数组front<del>end的元素依次填入新数组0</del>size-1对应位置，然后让新元素填入新数组size的位置。</li>
+</ul>
+</li>
+<li>减容发生在length &gt; 8，并且size &#x3D;&#x3D; length&#x2F;4 + 1，并且有元素要出队时。数组容量减小为原来的1&#x2F;2，并且数组元素个数为新length的一半。<ul>
+<li>为什么不在size &#x3D;&#x3D; length&#x2F;2 + 1且有元素出队时减容呢？假设现在length为16，且有9个元素和有元素要出队，如果在size &#x3D;&#x3D; length&#x2F;2 + 1时就减容，那么新的length为8，新的size也为8，那如果此时又有新的元素要进入队列呢？我们又需要对队列进行扩容，扩容后如果有元素要出队列，我们又要减容……这样频繁的扩&#x2F;减容显然不是我们想看到的，所以我选择在size &#x3D;&#x3D; length&#x2F;4 + 1且有元素要出队时才减容。</li>
+<li>先在原数组上修改front(队首元素出队)&#x2F;end(队尾元素出队)，然后将原数组front<del>end对应的元素复制到新数组0</del>size-2的位置上。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>私有成员:</p>
+<pre><code class="java">private int length; //数组长度
+private int size; //元素个数
+private int front; //队列头索引
+private int end; //队列尾索引
+private T[] data; //存放元素的数组
+</code></pre>
+</li>
+<li><p>实现<code>expand</code>和<code>contract</code>:</p>
+<ul>
+<li>这两个方法对应扩容和减容，其核心逻辑在上面已经描述过了。</li>
+</ul>
+</li>
+<li><p>实现<code>addFirst</code>:</p>
+<ul>
+<li>如果队列已满则扩容，否则：front往前移一个位置，front处添加新元素。</li>
+<li>size++。</li>
+</ul>
+</li>
+<li><p>实现<code>addLast</code>:</p>
+<p>逻辑与addFirst相似，除了在添加时应该让end往后移动。</p>
+</li>
+<li><p>实现<code>removeFirst</code>:</p>
+<ul>
+<li>先获得返回结果res为data[front]。如果队列满足length&gt;8，且size &#x3D;&#x3D; length&#x2F;4 + 1则减容，否则：front处的元素置空，front往后移动一个位置。</li>
+<li>size–。</li>
+</ul>
+</li>
+<li><p>实现<code>removeLast</code>:</p>
+<ul>
+<li>逻辑与removeFirst相似，除了在移除时应该让end往前移动。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Project-1B"><a href="#Project-1B" class="headerlink" title="Project 1B"></a>Project 1B</h3><h4 id="任务一：Deque接口"><a href="#任务一：Deque接口" class="headerlink" title="任务一：Deque接口"></a>任务一：Deque接口</h4><ul>
+<li><p>定义Deque接口：</p>
+<pre><code class="java">public interface Deque&lt;T&gt; &#123;
+    public void addFirst(T item);
+    public void addLast(T item);
+    public boolean isEmpty();
+    public int size();
+    public void printDeque();
+    public T removeFirst();
+    public T removeLast();
+    public T get(int index);
+&#125;
+</code></pre>
+</li>
+<li><p>在Project 1A中我们定义了ArrayDeque类，现在让ArrayDeque成为Deque的实现类：</p>
+<pre><code class="java">public class ArrayDeque&lt;T&gt; implements Deque&lt;T&gt;&#123;
+    //省略
+&#125;
+</code></pre>
+</li>
+</ul>
+<h4 id="任务二：Task-2-wordToDeque"><a href="#任务二：Task-2-wordToDeque" class="headerlink" title="任务二：Task 2: wordToDeque"></a>任务二：Task 2: wordToDeque</h4><ul>
+<li><p>wordToDeque签名</p>
+<p><code>public Deque&lt;Character&gt; wordToDeque(String word)</code></p>
+</li>
+<li><p>实现思路：</p>
+<p>定义Deque&lt;Character&gt; res用来返回最终结果。从word取出每一个字符c，每次取出字符就调用res.addLast(c)。最后返回res。</p>
+</li>
+</ul>
+<h4 id="任务三：isPalindrome"><a href="#任务三：isPalindrome" class="headerlink" title="任务三：isPalindrome"></a>任务三：isPalindrome</h4><ul>
+<li><p>isPalindrome签名</p>
+<p><code>public boolean isPalindrome(String word)</code></p>
+</li>
+<li><p>官方给出的一些建议：</p>
+<ul>
+<li>使用wordToDeque来实现</li>
+<li>使用递归实现</li>
+</ul>
+</li>
+<li><p>实现思路：</p>
+<ul>
+<li><p>首先我们规定null传入isPalindrome时返回false，规定空串是回文字符串。</p>
+</li>
+<li><p>思路：为了方便操作，我们使用wordToDeque方法先将word转成一个字符队列que，然后将que传入isPalindromeHelper，并且将isPalindromeHelper(que)的返回值返回。定义方法<code>private boolean isPalindromeHelper(Deque&lt;Character&gt; que)</code>，该方法接收一个字符队列，并且判断队列中的字符是否构成回文字符串。</p>
+</li>
+<li><p>由isPalindromeHelper进行递归：</p>
+<ul>
+<li><p>如果que为空或者que中只有一个字符，返回true。</p>
+</li>
+<li><p>否则判断que第一个元素和最后一个元素是否相同(比较前先将首尾元素出队)，如果相同，返回isPalindromeHelper(que)，注意这时que已经去掉首尾元素了；如果不同，直接返回false。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="任务四：通用Palindrome和OffByOne"><a href="#任务四：通用Palindrome和OffByOne" class="headerlink" title="任务四：通用Palindrome和OffByOne"></a>任务四：通用Palindrome和OffByOne</h4><ul>
+<li><p>重载isPalindrome签名</p>
+<p><code>public boolean isPalindrome(String word, CharacterComparator cc)</code></p>
+</li>
+<li><p>实现思路：</p>
+<p>思路与上面的isPalindrome几乎一样，只是在helper函数中取出首尾字符后，使用参数cc的charEquals函数判断两个字符是否相等。</p>
+</li>
+</ul>
+<h4 id="任务五：OffByN"><a href="#任务五：OffByN" class="headerlink" title="任务五：OffByN"></a>任务五：OffByN</h4><p>非常简单，就是在传入的两个char之差为n时返回true，否则返回false。</p>
+<h2 id="HWs"><a href="#HWs" class="headerlink" title="HWs"></a>HWs</h2></article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2023/06/09/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%85%B3%E4%BA%8ETreeMap%E7%9A%84%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%91/" title="记一次关于TreeMap的使用的坑"><span class="has-text-weight-semibold">下一页: 记一次关于TreeMap的使用的坑</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="fertfest/fertfest.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/fertfest"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> fertfest 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span>清醒时做事，迷茫时读书，独处时思考，烦躁时运动，焦虑时行动，得意时淡然，失意时坦然，忙碌时专注，闲暇时蓄力。</span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
