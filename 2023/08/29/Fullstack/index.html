@@ -1,0 +1,2366 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>《Full Stack Open》学习记录</title><meta name="description" content="热爱，专注"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="简介课程网址：https://fullstackopen.com/en/
+课程全称是”Deep Dive Into Modern Web Development”，即“深入现代Web开发”。
+在这门课程中将会学习到React，Redux，Node.js，MongoDB, GraphQL 和 TypeScript等知识。简单来说就是专注于用ReactJS和Node.js构建单页应用。
+part0a. 通用信息前置知识如果没有JS经验，那么要能够非常流利地使用你自己的编程语言（大概100~200个小时的练习）。
+课程材料课程材料基于逐渐扩大的示例应用，这些应用随着课程进度增加而改变。
+加入课程课程分为14个部分，每一部分平均需要15~20小时，但是这不是一定的。
+1~4部分会有标记了星号(*)的练习，这些练习会.."><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="fertfest的个人记录" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">fertfest's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">《Full Stack Open》学习记录</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part0"><span class="toc-text">part0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-%E9%80%9A%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-text">a. 通用信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-text">前置知识</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E6%9D%90%E6%96%99"><span class="toc-text">课程材料</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E5%85%A5%E8%AF%BE%E7%A8%8B"><span class="toc-text">加入课程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E7%BB%83%E4%B9%A0"><span class="toc-text">提交练习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%80%83%E8%AF%95"><span class="toc-text">课程考试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E8%AF%BE%E7%A8%8B%E4%B9%8B%E6%97%85%E5%89%8D"><span class="toc-text">开始课程之旅前</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-Web%E5%BA%94%E7%94%A8%E5%9F%BA%E7%A1%80"><span class="toc-text">b. Web应用基础</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-GET"><span class="toc-text">HTTP GET</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9Fweb%E5%BA%94%E7%94%A8"><span class="toc-text">传统web应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BF%90%E8%A1%8C%E5%BA%94%E7%94%A8%E9%80%BB%E8%BE%91"><span class="toc-text">在浏览器中运行应用逻辑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8C%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="toc-text">事件处理器和回调函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B-x2F-DOM"><span class="toc-text">文档对象模型&#x2F;DOM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E7%BB%88%E7%AB%AF%E6%93%8D%E4%BD%9C%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1"><span class="toc-text">用终端操作文档对象</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part1"><span class="toc-text">part1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-React%E5%85%A5%E9%97%A8"><span class="toc-text">a. React入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-text">组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSX"><span class="toc-text">JSX</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BB%84%E4%BB%B6"><span class="toc-text">多组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#props-%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%BB%99%E7%BB%84%E4%BB%B6"><span class="toc-text">props: 传递数据给组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">一些注意事项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E6%B8%B2%E6%9F%93%E5%AF%B9%E8%B1%A1"><span class="toc-text">不要渲染对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-JavaScript"><span class="toc-text">b. JavaScript</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%EF%BC%8C%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-text">c. 组件状态，事件处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="toc-text">组件辅助函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%84"><span class="toc-text">解构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E9%87%8D%E6%96%B0%E6%B8%B2%E6%9F%93"><span class="toc-text">页面重新渲染</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E7%8A%B6%E6%80%81-stateful-%E7%BB%84%E4%BB%B6"><span class="toc-text">有状态(stateful)组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-text">事件处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0"><span class="toc-text">一个事件处理器是一个函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%A0%E9%80%92%E7%8A%B6%E6%80%81%E5%88%B0%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="toc-text">传递状态到子组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-%E6%9B%B4%E5%A4%8D%E6%9D%82%E7%9A%84%E7%8A%B6%E6%80%81%EF%BC%8C%E8%B0%83%E8%AF%95React%E5%BA%94%E7%94%A8"><span class="toc-text">d. 更复杂的状态，调试React应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E7%8A%B6%E6%80%81"><span class="toc-text">复杂状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%9A%84%E6%9B%B4%E6%96%B0%E6%98%AF%E5%BC%82%E6%AD%A5%E7%9A%84"><span class="toc-text">状态的更新是异步的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93"><span class="toc-text">条件渲染</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E8%AF%95React%E5%BA%94%E7%94%A8"><span class="toc-text">调试React应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E5%87%86%E5%88%99"><span class="toc-text">钩子函数的使用准则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">返回函数的函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E8%A6%81%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6"><span class="toc-text">不要在组件中定义组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part2"><span class="toc-text">part2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-%E6%B8%B2%E6%9F%93%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88-collection-%EF%BC%8C%E6%A8%A1%E5%9D%97-modules"><span class="toc-text">a. 渲染一个集合(collection)，模块(modules)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E9%9B%86%E5%90%88"><span class="toc-text">渲染集合</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#key%E5%B1%9E%E6%80%A7"><span class="toc-text">key属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E6%A8%A1%E5%BC%8F%EF%BC%9A%E6%95%B0%E7%BB%84%E7%B4%A2%E5%BC%95%E4%BD%9C%E4%B8%BAkey"><span class="toc-text">反模式：数组索引作为key</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E6%A8%A1%E5%9D%97"><span class="toc-text">重构模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-%E8%A1%A8%E5%8D%95"><span class="toc-text">b. 表单</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86notes%E4%BF%9D%E5%AD%98%E8%BF%9B%E7%BB%84%E4%BB%B6%E7%8A%B6%E6%80%81%E4%B8%AD"><span class="toc-text">将notes保存进组件状态中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6"><span class="toc-text">受控组件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-text">c. 从服务器获取数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7-JSON-server"><span class="toc-text">工具-JSON server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#npm"><span class="toc-text">npm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Axios%E5%92%8Cpromises"><span class="toc-text">Axios和promises</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Effect%E9%92%A9%E5%AD%90"><span class="toc-text">Effect钩子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%97%B6%E7%9A%84%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="toc-text">开发时的运行时环境</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-%E4%BF%AE%E6%94%B9%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-text">d. 修改服务器中的数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E9%80%81%E6%95%B0%E6%8D%AE"><span class="toc-text">向服务器发送数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E4%B8%8E%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1%E7%9A%84%E9%80%BB%E8%BE%91%E6%8F%90%E5%8F%96%E6%88%90%E5%8D%95%E7%8B%AC%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-text">将与后端通信的逻辑提取成单独的模块</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e-%E4%B8%BAReact%E5%BA%94%E7%94%A8%E6%B7%BB%E5%8A%A0%E6%A0%B7%E5%BC%8F"><span class="toc-text">e. 为React应用添加样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part3"><span class="toc-text">part3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-Node-js%E5%92%8CExpress"><span class="toc-text">a. Node.js和Express</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">简单的web服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Express"><span class="toc-text">Express</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web%E5%92%8Cexpress"><span class="toc-text">web和express</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nodemon"><span class="toc-text">nodemon</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#REST"><span class="toc-text">REST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%96%E5%8D%95%E4%B8%AA%E8%B5%84%E6%BA%90"><span class="toc-text">取单个资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%B5%84%E6%BA%90"><span class="toc-text">删除资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VS-Code%E6%8F%92%E4%BB%B6%EF%BC%9AREST-client"><span class="toc-text">VS Code插件：REST client</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE"><span class="toc-text">接收数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%AF%B7%E6%B1%82%E7%B1%BB%E5%9E%8B"><span class="toc-text">关于请求类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">中间件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-%E9%83%A8%E7%BD%B2%E5%BA%94%E7%94%A8%E5%88%B0%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">b. 部署应用到互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E5%92%8CCORS"><span class="toc-text">同源策略和CORS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%90%8E%E7%AB%AF%E6%8F%90%E4%BE%9B%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="toc-text">从后端提供静态文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%90%86"><span class="toc-text">代理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E5%B0%86%E6%95%B0%E6%8D%AE%E4%BF%9D%E5%AD%98%E5%88%B0MongoDB"><span class="toc-text">c. 将数据保存到MongoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MongoDB"><span class="toc-text">MongoDB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F-schema"><span class="toc-text">模式(schema)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BF%9D%E5%AD%98%E5%AF%B9%E8%B1%A1"><span class="toc-text">创建和保存对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%90%8E%E7%AB%AF%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">连接后端到数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E8%AE%BE%E8%AE%A1%E6%88%90%E5%8D%95%E7%8B%AC%E7%9A%84%E6%A8%A1%E5%9D%97"><span class="toc-text">将数据库配置设计成单独的模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E8%B7%AF%E7%94%B1%E5%A4%84%E7%90%86%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">在路由处理器中使用数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E7%A7%BB%E5%8A%A8%E5%88%B0%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%B8%AD"><span class="toc-text">将错误处理移动到中间件中</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%A1%BA%E5%BA%8F"><span class="toc-text">中间件加载的顺序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-%E9%AA%8C%E8%AF%81%E5%92%8CESLint"><span class="toc-text">b. 验证和ESLint</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Lint"><span class="toc-text">Lint</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part4"><span class="toc-text">part4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-%E5%90%8E%E7%AB%AF%E5%BA%94%E7%94%A8%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%8C%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8"><span class="toc-text">a. 后端应用的结构，测试入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95Node%E5%BA%94%E7%94%A8"><span class="toc-text">测试Node应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b-%E6%B5%8B%E8%AF%95%E5%90%8E%E7%AB%AF"><span class="toc-text">b. 测试后端</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="toc-text">测试环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#supertest"><span class="toc-text">supertest</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E6%B5%8B%E8%AF%95%E5%89%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">在测试前初始化数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A9%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%AA%E6%8E%A5%E4%B8%80%E4%B8%AA%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-text">让测试一个接一个的执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#async-x2F-await"><span class="toc-text">async&#x2F;await</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#async-x2F-await%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-text">async&#x2F;await错误处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%96beforeEach%E5%87%BD%E6%95%B0"><span class="toc-text">优化beforeEach函数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="toc-text">c. 用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="toc-text">创建用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0note"><span class="toc-text">创建新note</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Populate"><span class="toc-text">Populate</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d-Token%E8%AE%A4%E8%AF%81"><span class="toc-text">d. Token认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%85%E9%99%90%E5%B7%B2%E7%99%BB%E5%85%A5%E7%9A%84%E7%94%A8%E6%88%B7%E5%88%9B%E5%BB%BA%E6%96%B0note"><span class="toc-text">仅限已登入的用户创建新note</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Etoken%E8%AE%A4%E8%AF%81%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">基于token认证的问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part5"><span class="toc-text">part5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-%E5%89%8D%E7%AB%AF%E7%99%BB%E9%99%86"><span class="toc-text">a. 前端登陆</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%99%BB%E9%99%86"><span class="toc-text">处理登陆</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#to-do"><span class="toc-text">to do</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#exer"><span class="toc-text">exer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7-x2F-%E5%BA%93%E6%95%B4%E7%90%86"><span class="toc-text">工具&#x2F;库整理</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/web%E5%BC%80%E5%8F%91"><i class="tag post-item-tag">web开发</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">《Full Stack Open》学习记录</h1><time class="has-text-grey" datetime="2023-08-29T04:57:25.501Z">2023-08-29</time><article class="mt-2 post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>课程网址：<a target="_blank" rel="noopener" href="https://fullstackopen.com/en/">https://fullstackopen.com/en/</a></p>
+<p>课程全称是”Deep Dive Into Modern Web Development”，即“深入现代Web开发”。</p>
+<p>在这门课程中将会学习到React，Redux，Node.js，MongoDB, GraphQL 和 TypeScript等知识。简单来说就是专注于用ReactJS和Node.js构建单页应用。</p>
+<h2 id="part0"><a href="#part0" class="headerlink" title="part0"></a>part0</h2><h3 id="a-通用信息"><a href="#a-通用信息" class="headerlink" title="a. 通用信息"></a>a. 通用信息</h3><h4 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h4><p>如果没有JS经验，那么要能够非常流利地使用你自己的编程语言（大概100~200个小时的练习）。</p>
+<h4 id="课程材料"><a href="#课程材料" class="headerlink" title="课程材料"></a>课程材料</h4><p>课程材料基于逐渐扩大的示例应用，这些应用随着课程进度增加而改变。</p>
+<h4 id="加入课程"><a href="#加入课程" class="headerlink" title="加入课程"></a>加入课程</h4><p>课程分为14个部分，每一部分平均需要15~20小时，但是这不是一定的。</p>
+<p>1~4部分会有标记了星号(*)的练习，这些练习会计入总分，但是不会影响你完成下一部分的练习。</p>
+<p>5~13部分没有标记*的练习。</p>
+<h4 id="提交练习"><a href="#提交练习" class="headerlink" title="提交练习"></a>提交练习</h4><p>练习通过GitHub提交，并且在提交系统中将练习标记为已完成。</p>
+<p>练习提交时需要一次性提交一部分的练习。</p>
+<h4 id="课程考试"><a href="#课程考试" class="headerlink" title="课程考试"></a>课程考试</h4><p>为了得到官方的大学学分，你需要通过涵盖课程1~5部分的课程考试。</p>
+<h4 id="开始课程之旅前"><a href="#开始课程之旅前" class="headerlink" title="开始课程之旅前"></a>开始课程之旅前</h4><p>安装<a target="_blank" rel="noopener" href="https://www.google.com/chrome/">Chrome browser</a>&#x2F; <a target="_blank" rel="noopener" href="https://www.mozilla.org/en-US/firefox/developer/">Developer Edition of Firefox</a>。</p>
+<p>学会Git和GitHub的基本操作。</p>
+<p>安装文本编辑器，推荐<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code</a>。</p>
+<p>安装 <a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>，要求版本18.13.0或以上(2023&#x2F;8&#x2F;29)。</p>
+<h3 id="b-Web应用基础"><a href="#b-Web应用基础" class="headerlink" title="b. Web应用基础"></a>b. Web应用基础</h3><p>Web开发的第一原则：在你的浏览器上确保开发者终端一直打开着。（Win11中chrome里按F12）</p>
+<h4 id="HTTP-GET"><a href="#HTTP-GET" class="headerlink" title="HTTP GET"></a>HTTP GET</h4><p>服务器和web浏览器通过HTTP协议进行通信。</p>
+<h4 id="传统web应用"><a href="#传统web应用" class="headerlink" title="传统web应用"></a>传统web应用</h4><p><a target="_blank" rel="noopener" href="https://studies.cs.helsinki.fi/exampleapp/">示例应用</a>的主页就是以传统web应用方式工作的。当进入页面时，浏览器从服务器取回HTML文档，文档详述了页面的结构和文本内容。</p>
+<h4 id="在浏览器中运行应用逻辑"><a href="#在浏览器中运行应用逻辑" class="headerlink" title="在浏览器中运行应用逻辑"></a>在浏览器中运行应用逻辑</h4><p>打开网址<a target="_blank" rel="noopener" href="https://studies.cs.helsinki.fi/exampleapp/data.json%E6%97%B6%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E9%9D%9E%E5%B8%B8%E6%B7%B7%E4%B9%B1%E7%9A%84json%E6%95%B0%E6%8D%AE%EF%BC%8Cchrome%E9%BB%98%E8%AE%A4%E4%B8%8D%E4%BC%9A%E4%BB%A5%E7%BB%93%E6%9E%84%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F%E6%98%BE%E5%BC%8Fjson%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E6%9D%A5%E6%96%B9%E4%BE%BF%E6%88%91%E4%BB%AC%E6%9F%A5%E7%9C%8Bjson%EF%BC%9A">https://studies.cs.helsinki.fi/exampleapp/data.json时我们可以看到非常混乱的json数据，chrome默认不会以结构化的方式显式json数据，但是可以安装插件来方便我们查看json：</a></p>
+<p><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc">JSONVue</a></p>
+<h4 id="事件处理器和回调函数"><a href="#事件处理器和回调函数" class="headerlink" title="事件处理器和回调函数"></a>事件处理器和回调函数</h4><p>事件处理器函数被叫做回调函数。应用程序代码不会调用这些函数，但是当事件发生时运行时环境-浏览器会在合适的时间调用这些函数。</p>
+<h4 id="文档对象模型-x2F-DOM"><a href="#文档对象模型-x2F-DOM" class="headerlink" title="文档对象模型&#x2F;DOM"></a>文档对象模型&#x2F;DOM</h4><p>我们可以把HTML页面当做隐式的树形结构：</p>
+<pre><code class="html">html
+  head
+    link
+    script
+  body
+    div
+      h1
+      div
+        ul
+          li
+          li
+          li
+      form
+        input
+        input
+</code></pre>
+<p>浏览器基于这一观点将HTML元素们描绘成一棵树:</p>
+<img src="..\images\Fullstack\part0\文档对象模型.png"/>
+
+
+
+<p>文档对象模型是一个应用程序编程接口(API)，使得元素树的编程式的改变可以映射到web页面。例如：</p>
+<pre><code class="js">//创建新节点并赋值给变量ul，然后给它添加一些孩子结点
+var ul = document.createElement(&#39;ul&#39;)
+
+data.forEach(function(note) &#123;
+  var li = document.createElement(&#39;li&#39;)
+
+  ul.appendChild(li)
+  li.appendChild(document.createTextNode(note.content))
+&#125;)
+</code></pre>
+<h4 id="用终端操作文档对象"><a href="#用终端操作文档对象" class="headerlink" title="用终端操作文档对象"></a>用终端操作文档对象</h4><p>DOM树最顶级的结点叫做<code>document</code>对象。在终端选项卡中键入”document”可以访问<code>document</code>对象：</p>
+<p><img src="C:\Users\chen2\Desktop\files\cyccycyy.github.io\source\images\Fullstack\part0\终端访问文档对象.png"></p>
+<p>甚至可以添加文档对象到页面中：</p>
+<p><img src="C:\Users\chen2\Desktop\files\cyccycyy.github.io\source\images\Fullstack\part0\通过终端添加文档对象到页面中.png"></p>
+<p>可以看到我们通过终端向ul添加了一个li标签。</p>
+<h2 id="part1"><a href="#part1" class="headerlink" title="part1"></a>part1</h2><h3 id="a-React入门"><a href="#a-React入门" class="headerlink" title="a. React入门"></a>a. React入门</h3><p>现在开始构建React最简单的方式是使用<a target="_blank" rel="noopener" href="https://vitejs.dev/">Vite</a>。</p>
+<p>创建一个叫part1的应用，进入到它的目录并且安装库：</p>
+<pre><code class="shell">npm create vite@latest part1 -- --template react
+cd part1
+npm install
+</code></pre>
+<p>开始应用：</p>
+<pre><code class="shell">npm run dev
+</code></pre>
+<p>文件瘦身：</p>
+<pre><code class="jsx">//main.jsx
+import ReactDOM from &#39;react-dom/client&#39;
+
+import App from &#39;./App&#39;
+
+ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(&lt;App /&gt;)
+</code></pre>
+<pre><code class="jsx">//App.jsx
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;p&gt;Hello world&lt;/p&gt;
+  &lt;/div&gt;
+)
+
+export default App
+</code></pre>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p><strong>注意组件名首字母必须大写！！！</strong></p>
+<p>main.jsx的最后一行:</p>
+<pre><code class="jsx">ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(&lt;App /&gt;)
+</code></pre>
+<p>把组件App的内容渲染到了root中。</p>
+<p>在React中，所有需要被渲染的内容通常都定义成React组件(虽然写在index.html中的内容也会被渲染)。</p>
+<pre><code class="jsx">//App.jsx
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;p&gt;Hello world&lt;/p&gt;
+  &lt;/div&gt;
+)
+
+export default App
+</code></pre>
+<p>上面的代码定义了一个组件App，有几点值得注意：</p>
+<ul>
+<li><p>组件被定义成一个JS函数。函数被赋给变量App。</p>
+</li>
+<li><p>JS有几种定义函数的方式，但是这里使用的是箭头函数。</p>
+</li>
+<li><p>因为函数只由一个表达式组成，所以我们使用了缩写(shorthand)。如果不使用缩写函数将是这样：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hello world&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+</li>
+</ul>
+<p>组件内容动态渲染：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  const now = new Date()
+  const a = 10
+  const b = 20
+  console.log(now, a+b)
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hello world, it is &#123;now.toString()&#125;&lt;/p&gt;
+      &lt;p&gt;
+        &#123;a&#125; plus &#123;b&#125; is &#123;a + b&#125;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<h4 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h4><p>虽然JSX看起来像HTML，但是我们所做的其实是一种写JS的方式。React组件返回的JSX被编译成JavaScript。在编译后，App.jsx看起来像这样：</p>
+<pre><code class="js">const App = () =&gt; &#123;
+  const now = new Date()
+  const a = 10
+  const b = 20
+  return React.createElement(
+    &#39;div&#39;,
+    null,
+    React.createElement(
+      &#39;p&#39;, null, &#39;Hello world, it is &#39;, now.toString()
+    ),
+    React.createElement(
+      &#39;p&#39;, null, a, &#39; plus &#39;, b, &#39; is &#39;, a + b
+    )
+  )
+&#125;
+</code></pre>
+<p>编译工作由<a target="_blank" rel="noopener" href="https://babeljs.io/repl/">Babel</a>处理。</p>
+<p>JSX是一种“类XML”语法，这意味着每一个tag都需要被关闭。例如在JSX中不能这样写换行tag：</p>
+<pre><code class="jsx">&lt;br&gt;
+</code></pre>
+<p>而必须这样写：</p>
+<pre><code class="jsx">&lt;br /&gt;
+</code></pre>
+<h4 id="多组件"><a href="#多组件" class="headerlink" title="多组件"></a>多组件</h4><p>定义Hello组件：</p>
+<pre><code class="jsx">const Hello = () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hello world&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>将App.jsx改成下面这样：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Greetings&lt;/h1&gt;
+      &lt;Hello /&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>这表示在App中使用Hello组件，当然可以不止一次地使用Hello：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Greetings&lt;/h1&gt;
+      &lt;Hello /&gt;
+      &lt;Hello /&gt;
+      &lt;Hello /&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<h4 id="props-传递数据给组件"><a href="#props-传递数据给组件" class="headerlink" title="props: 传递数据给组件"></a>props: 传递数据给组件</h4><p>修改Hello组件：</p>
+<pre><code class="jsx">const Hello = (props) =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hello &#123;props.name&#125;&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>注意函数定义有了一个props形参用于接收Hello组件用户传入的”props”。</p>
+<p>props像这样定义：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Greetings&lt;/h1&gt;
+      &lt;Hello name=&#39;George&#39; /&gt; 
+      &lt;Hello name=&#39;Daisy&#39; /&gt;
+       &#123;
+          //here!
+       &#125;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<h4 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h4><p>注意一个React组件的内容通常需要包含一个根元素，例如：</p>
+<pre><code class="js">const App = () =&gt; &#123;
+  return (
+    &lt;h1&gt;Greetings&lt;/h1&gt;
+    &lt;Hello name=&#39;Maya&#39; age=&#123;26 + 10&#125; /&gt;
+    &lt;Footer /&gt;
+  )
+&#125;
+</code></pre>
+<p>Vite会报错：</p>
+<p><img src="/..%5Cimages%5CFullstack%5Cpart1%5C%E7%BB%84%E4%BB%B6%E6%B2%A1%E6%9C%89%E6%A0%B9%E5%85%83%E7%B4%A0%E6%8A%A5%E9%94%99.png" alt="组件没有根元素报错"></p>
+<p>使用根元素不是唯一的工作选择，组件数组也是有效的解决方案：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  return [
+    &lt;h1&gt;Greetings&lt;/h1&gt;,
+    &lt;Hello name=&#39;Maya&#39; age=&#123;26 + 10&#125; /&gt;,
+    &lt;Footer /&gt;
+  ]
+&#125;
+</code></pre>
+<p>根元素是被强制要求的，这样(指用div元素包裹的方式)在DOM树中会有一个“额外”的div元素。可以通过<a target="_blank" rel="noopener" href="https://react.dev/reference/react/Fragment">fragments</a>避免：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  const name = &#39;Peter&#39;
+  const age = 10
+
+  return (
+      &#123;
+          //fragments 就是空的标签对
+      &#125;
+    &lt;&gt;
+      &lt;h1&gt;Greetings&lt;/h1&gt;
+      &lt;Hello name=&#39;Maya&#39; age=&#123;26 + 10&#125; /&gt;
+      &lt;Hello name=&#123;name&#125; age=&#123;age&#125; /&gt;
+      &lt;Footer /&gt;
+    &lt;/&gt;
+  )
+&#125;
+</code></pre>
+<h4 id="不要渲染对象"><a href="#不要渲染对象" class="headerlink" title="不要渲染对象"></a>不要渲染对象</h4><p>对象作为React child不会生效，即应用尝试渲染对象但是失败了。</p>
+<p>可以直接渲染数组，只要数组的元素是可以渲染的。但是这样的结果应该并不是你想要的：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  const friends = [ &#39;Peter&#39;, &#39;Maya&#39;]
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;&#123;friends&#125;&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<h3 id="b-JavaScript"><a href="#b-JavaScript" class="headerlink" title="b. JavaScript"></a>b. JavaScript</h3><p>JavaScript标准的官方名称叫<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a>。截止2023年6月份，最新版本是<a target="_blank" rel="noopener" href="https://www.ecma-international.org/ecma-262/">ECMAScript®2023</a>，也称为ES14。</p>
+<p>浏览器还不支持所有JS的新特性，由于这一原因，许多运行在浏览器中的代码都被从更新版本的JS转译到旧的、更兼容的版本。现如今最受欢迎的转译方式是使用<a target="_blank" rel="noopener" href="https://babeljs.io/">Babel</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a>是基于谷歌<a target="_blank" rel="noopener" href="https://developers.google.com/v8/">Chrome V8</a> JS引擎的JS运行环境，最新版的Node已经能理解最新版的JS，所以写给Node的代码不需要转译。</p>
+<p>由于之前学过JS语法，这里就简单记录一下一些要点：</p>
+<ul>
+<li><p>不建议使用var，因为var的机制(如作用域)很奇怪。使用ES6引入的let和const。</p>
+</li>
+<li><p>函数式编程范式的一个性质是不可变(immutable)数据结构的使用。在React代码中，最好使用concat而不是push。</p>
+<pre><code class="javascript">const t = [1, -1, 3]
+
+const t2 = t.concat(5)  // creates new array
+
+console.log(t)  // [1, -1, 3] is printed
+console.log(t2) // [1, -1, 3, 5] is printed
+</code></pre>
+</li>
+<li><p>解构赋值：</p>
+<pre><code class="javascript">const t = [1, 2, 3, 4, 5]
+
+//注意const会让first，second和rest都不可变。
+const [first, second, ...rest] = t
+
+console.log(first, second)  // 1, 2 is printed
+console.log(rest)          // [3, 4, 5] is printed
+</code></pre>
+</li>
+<li><p>箭头函数如果只有一个参数，可以省略包裹参数的括号，如果函数内只有一条语句并且是返回语句，可以省略函数体括号和return：</p>
+<pre><code class="js">const square = p =&gt; p * p
+</code></pre>
+<p>箭头函数在ES6被加入JS中，在此之前定义函数只能使用<em>function</em>关键字。</p>
+</li>
+<li><p>this指向问题：</p>
+<pre><code class="js">const arto = &#123;
+  name: &#39;Arto Hellas&#39;,
+  age: 35,
+  education: &#39;PhD&#39;,
+  greet: function() &#123;
+    console.log(&#39;hello, my name is &#39; + this.name)
+  &#125;,
+  doAddition: function(a, b) &#123;
+    console.log(a + b)
+  &#125;,
+&#125;
+
+arto.doAddition(1, 4)        // 5 is printed
+
+const referenceToAddition = arto.doAddition
+referenceToAddition(10, 15)   // 25 is printed
+</code></pre>
+<p>doAddition函数没有使用this，可以良好地工作。但是如果以类似地方式测试greet函数：</p>
+<pre><code class="js">arto.greet()       // hello, my name is Arto Hellas 
+
+const referenceToGreet = arto.greet
+referenceToGreet() // hello, my name is
+//不会打印arto.name
+</code></pre>
+<p>与其它语言不同，JS中<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a>值的定义是基于<strong>方法被调用的方式</strong>的。当通过引用调用方法时，<em>this</em>值变成了所谓的全局对象(<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Global_object">global object</a>)：</p>
+<pre><code class="js">let name = &quot;xiao ming&quot;
+referenceToGreet() //hello, my name is xiao ming
+</code></pre>
+<p>在使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout">setTimeout</a>函数时也会出现同样的问题：</p>
+<pre><code class="js">const arto = &#123;
+  name: &#39;Arto Hellas&#39;,
+  greet: function() &#123;
+    console.log(&#39;hello, my name is &#39; + this.name)
+  &#125;,
+&#125;
+
+
+setTimeout(arto.greet, 1000)
+</code></pre>
+<p>因为事实上是JS引擎调用greet方法，在这种情况下this指向全局对象。</p>
+<p>可以使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">bind</a>来解决这类问题：</p>
+<pre><code class="js">setTimeout(arto.greet.bind(arto), 1000)
+</code></pre>
+<p>然而在这门课中我们通过使用”减少this使用的(this-less)”JavaScript来避免这样的问题。</p>
+</li>
+</ul>
+<h3 id="c-组件状态，事件处理器"><a href="#c-组件状态，事件处理器" class="headerlink" title="c. 组件状态，事件处理器"></a>c. 组件状态，事件处理器</h3><h4 id="组件辅助函数"><a href="#组件辅助函数" class="headerlink" title="组件辅助函数"></a>组件辅助函数</h4><pre><code class="js">const Hello = (props) =&gt; &#123;
+  const bornYear = () =&gt; &#123;
+    const yearNow = new Date().getFullYear()
+    return yearNow - props.age
+  &#125;
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;
+        Hello &#123;props.name&#125;, you are &#123;props.age&#125; years old
+      &lt;/p&gt;
+      &lt;p&gt;So you were probably born in &#123;bornYear()&#125;&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>上面的bornYear定义在Hello组件的内部，它不必声明参数就可以使用Hello的参数。当Hello组件被渲染时函数会被调用。</p>
+<h4 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h4><p>解构使得变量的赋值更加简单，因为我们可以用它来提取并收集对象的属性，然后把这些属性赋给不同的变量：</p>
+<pre><code class="js">const Hello = (props) =&gt; &#123;
+  const &#123; name, age &#125; = props // Here we are!!!
+  const bornYear = () =&gt; new Date().getFullYear() - age
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hello &#123;name&#125;, you are &#123;age&#125; years old&lt;/p&gt;
+      &lt;p&gt;So you were probably born in &#123;bornYear()&#125;&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>甚至可以更简洁地使用解构：</p>
+<pre><code class="js">const Hello = (&#123; name, age &#125;) =&gt; &#123; // 注意参数！！！
+  const bornYear = () =&gt; new Date().getFullYear() - age
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;
+        Hello &#123;name&#125;, you are &#123;age&#125; years old
+      &lt;/p&gt;
+      &lt;p&gt;So you were probably born in &#123;bornYear()&#125;&lt;/p&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<h4 id="页面重新渲染"><a href="#页面重新渲染" class="headerlink" title="页面重新渲染"></a>页面重新渲染</h4><pre><code class="jsx">//App.jsx
+const App = (props) =&gt; &#123;
+  const &#123;counter&#125; = props
+  return (
+    &lt;div&gt;&#123;counter&#125;&lt;/div&gt;
+  )
+&#125;
+
+export default App
+</code></pre>
+<pre><code class="jsx">//main.jsx
+import ReactDOM from &#39;react-dom/client&#39;
+
+import App from &#39;./App&#39;
+
+let counter = 1
+
+ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(
+  &lt;App counter=&#123;counter&#125; /&gt;
+)
+</code></pre>
+<p>上面的代码通过props将counter的值传给App，浏览器将会渲染counter的值1。</p>
+<p>如果我们在</p>
+<pre><code class="jsx">ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(
+  &lt;App counter=&#123;counter&#125; /&gt;
+)
+</code></pre>
+<p>之后让counter自增，即<code>counter+=1</code>，页面不会重新渲染，页面中还是显示1而不是2。因为这样做不会让页面重新渲染。如果要让页面重新渲染，可以使用render方法：</p>
+<pre><code class="jsx">//main.jsx
+let counter = 1
+
+const root_elem = document.getElementById(&#39;root&#39;)
+const root = ReactDOM.createRoot(root_elem)
+
+const refresh = () =&gt; &#123;
+    root.render(&lt;App counter=&#123;counter&#125; /&gt;)
+&#125;
+
+refresh()
+counter += 1
+refresh()
+counter += 1
+refresh()
+</code></pre>
+<p>然而，重复调用render并不是一种推荐的重新渲染组件的方式。更好的方式在下面。</p>
+<h4 id="有状态-stateful-组件"><a href="#有状态-stateful-组件" class="headerlink" title="有状态(stateful)组件"></a>有状态(stateful)组件</h4><p>下面将在React的 <a target="_blank" rel="noopener" href="https://react.dev/learn/state-a-components-memory">state hook</a>的帮助下为App组件添加状态。</p>
+<pre><code class="jsx">//App.jsx
+import &#123; useState &#125; from &#39;react&#39; //引入useState函数
+
+const App = () =&gt; &#123;
+  const [ counter, setCounter ] = useState(0) //使用useState函数为组件添加初始值为0的state
+  //counter变量被赋予了状态的初始值0
+  //setCounter则被赋予了用来修改state的函数
+
+  setTimeout(
+    () =&gt; setCounter(counter + 1),
+    1000
+  )
+
+  return (
+    &lt;div&gt;&#123;counter&#125;&lt;/div&gt;
+  )
+&#125;
+
+export default App
+</code></pre>
+<p>当<em>状态修改函数</em><code>setCounter</code>被调用时，React重新渲染组件，这意味着组件函数的函数体</p>
+<pre><code class="jsx">() =&gt; &#123;
+  const [ counter, setCounter ] = useState(0)
+
+  setTimeout(
+    () =&gt; setCounter(counter + 1),
+    1000
+  )
+
+  return (
+    &lt;div&gt;&#123;counter&#125;&lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>会被再次执行。</p>
+<p>第二次组件函数执行时会调用<code>useState</code>函数，<code>useState</code><strong>函数返回state的新值：1。</strong></p>
+<p>再次执行函数体也再一次对<code>setTimeout</code>进行了调用。</p>
+<h4 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h4><pre><code class="jsx">const App = () =&gt; &#123;
+  const [ counter, setCounter ] = useState(0)
+
+  return (
+    &lt;div&gt;
+      &lt;div&gt;&#123;counter&#125;&lt;/div&gt;
+      &lt;button onClick=&#123;() =&gt; setCounter(counter + 1)&#125;&gt;
+        plus
+      &lt;/button&gt;
+      &lt;button onClick=&#123;() =&gt; setCounter(0)&#125;&gt; 
+        zero
+      &lt;/button&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<h4 id="一个事件处理器是一个函数"><a href="#一个事件处理器是一个函数" class="headerlink" title="一个事件处理器是一个函数"></a>一个事件处理器是一个函数</h4><pre><code class="jsx">const App = () =&gt; &#123;
+  const [counter, setCounter] = useState(0)
+
+  return (
+    &lt;div&gt;
+      &lt;div&gt;&#123;counter&#125;&lt;/div&gt;
+      &lt;button onClick=&#123;setCounter(counter + 1)&#125;&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>像上面这样{}内并不是函数定义，而是<strong>函数调用</strong>，当App第一次被渲染时，将会执行<code>setCounter(counter + 1)</code>，然后由于<code>setCounter</code>调用会让App组件重新渲染，App内的代码又会被执行，也会执行<code>setCounter(counter + 1)</code>，然后由于<code>setCounter</code>调用会让App组件重新渲染……导致了组件的无限重新渲染。但是React并不会允许太多次的重新渲染：<code>Uncaught Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.</code></p>
+<h4 id="传递状态到子组件"><a href="#传递状态到子组件" class="headerlink" title="传递状态到子组件"></a>传递状态到子组件</h4><p><strong>最佳实践</strong>：经常会出现好几个组件需要对相同的数据变动做出反应。我们推荐将共同的状态提升到他们最近的公共祖先。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h3 id="d-更复杂的状态，调试React应用"><a href="#d-更复杂的状态，调试React应用" class="headerlink" title="d. 更复杂的状态，调试React应用"></a>d. 更复杂的状态，调试React应用</h3><h4 id="复杂状态"><a href="#复杂状态" class="headerlink" title="复杂状态"></a>复杂状态</h4><p> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">object spread</a>(对象传播)语法：</p>
+<pre><code class="jsx">const handleLeftClick = () =&gt;
+  setClicks(&#123; ...clicks, left: clicks.left + 1 &#125;)
+
+const handleRightClick = () =&gt;
+  setClicks(&#123; ...clicks, right: clicks.right + 1 &#125;)
+</code></pre>
+<p>将所有状态存储到单个状态对象对于我们的counter应用来说是一个不好的选择，这样做并没有明显的好处，而且代码也更复杂了。所以在这种情况下还是将状态分开存储好一些。</p>
+<p>有些情况下存储单个状态对象有好处，详见<a target="_blank" rel="noopener" href="https://react.dev/learn/choosing-the-state-structure">React官方文档</a> 。</p>
+<h4 id="状态的更新是异步的"><a href="#状态的更新是异步的" class="headerlink" title="状态的更新是异步的"></a>状态的更新是异步的</h4><p>在React中状态的更新是异步的，当调用<code>setLeft(left)</code>时，left并不会马上更新，而是在组件重新渲染后的<strong>某个时间点</strong>更新。</p>
+<h4 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h4><pre><code class="jsx">const History = (props) =&gt; &#123;
+  if (props.allClicks.length === 0) &#123;
+    return (
+      &lt;div&gt;
+        the app is used by pressing the buttons
+      &lt;/div&gt;
+    )
+  &#125;
+  return (
+    &lt;div&gt;
+      button press history: &#123;props.allClicks.join(&#39; &#39;)&#125;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>History组件因props.allClicks.length的不同而渲染出不同的元素，这叫做条件渲染。</p>
+<h4 id="调试React应用"><a href="#调试React应用" class="headerlink" title="调试React应用"></a>调试React应用</h4><p>console.log()调试比较简单(但是好用)。除此以外还有其它调试方式：</p>
+<p>在你的代码中写下命令:<code>debugger</code>，Chrome会在到达该语句的时候暂停执行。</p>
+<p>也可以在浏览器开发者工具Sources栏找到源文件，在想要的地方添加断点。</p>
+<h4 id="钩子函数的使用准则"><a href="#钩子函数的使用准则" class="headerlink" title="钩子函数的使用准则"></a>钩子函数的使用准则</h4><ul>
+<li><p>useState(和useEffect)函数不能在循环、条件表达式或者任何不是定义组件的函数体的地方被调用。</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  // these are ok
+  const [age, setAge] = useState(0)
+  const [name, setName] = useState(&#39;Juha Tauriainen&#39;)
+
+  if ( age &gt; 10 ) &#123;
+    // this does not work!
+    const [foobar, setFoobar] = useState(null)
+  &#125;
+
+  for ( let i = 0; i &lt; age; i++ ) &#123;
+    // also this is not good
+    const [rightWay, setRightWay] = useState(false)
+  &#125;
+
+  const notGood = () =&gt; &#123;
+    // and this is also illegal
+    const [x, setX] = useState(-1000)
+  &#125;
+
+  return (
+    //...
+  )
+&#125;
+</code></pre>
+</li>
+</ul>
+<h4 id="返回函数的函数"><a href="#返回函数的函数" class="headerlink" title="返回函数的函数"></a>返回函数的函数</h4><p>另一种定义事件处理器的方式是使用返回函数的函数。</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  const [value, setValue] = useState(10)
+
+  const hello = () =&gt; &#123;
+    const handler = () =&gt; console.log(&#39;hello world&#39;)
+    return handler
+  &#125;
+
+  return (
+    &lt;div&gt;
+      &#123;value&#125;
+      &lt;button onClick=&#123;hello()&#125;&gt;button&lt;/button&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>以上代码当App被渲染时，函数：</p>
+<pre><code class="jsx">const hello = () =&gt; &#123;
+    const handler = () =&gt; console.log(&#39;hello world&#39;)
+    return handler
+  &#125;
+</code></pre>
+<p>会被执行，函数返回一个函数对象handler，然后：</p>
+<pre><code class="jsx">&lt;button onClick=&#123;hello()&#125;&gt;button&lt;/button&gt;
+</code></pre>
+<p>会使得onClick的值是一个函数。</p>
+<p>看起来来好像并没有什么用？</p>
+<p>更复杂的使用示例：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  const [value, setValue] = useState(10)
+
+  const hello = (who) =&gt; &#123;
+    const handler = () =&gt; &#123;
+      console.log(&#39;hello&#39;, who)
+    &#125;
+    return handler
+  &#125;
+
+  return (
+    &lt;div&gt;
+      &#123;value&#125;
+      &lt;button onClick=&#123;hello(&#39;world&#39;)&#125;&gt;button&lt;/button&gt;
+      &lt;button onClick=&#123;hello(&#39;react&#39;)&#125;&gt;button&lt;/button&gt;
+      &lt;button onClick=&#123;hello(&#39;function&#39;)&#125;&gt;button&lt;/button&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>这样就会让每个button得到不同的事件处理器。</p>
+<h4 id="不要在组件中定义组件"><a href="#不要在组件中定义组件" class="headerlink" title="不要在组件中定义组件"></a>不要在组件中定义组件</h4><p>虽然在组件中定义组件有可能也能让应用正常工作，但是这样的方式没有好处并且会导致许多问题。最大的问题是React在<strong>每一次渲染时将定义在另一个组件中的组件当成新组件</strong>。这使得React不能优化该组件。</p>
+<h2 id="part2"><a href="#part2" class="headerlink" title="part2"></a>part2</h2><h3 id="a-渲染一个集合-collection-，模块-modules"><a href="#a-渲染一个集合-collection-，模块-modules" class="headerlink" title="a. 渲染一个集合(collection)，模块(modules)"></a>a. 渲染一个集合(collection)，模块(modules)</h3><h4 id="渲染集合"><a href="#渲染集合" class="headerlink" title="渲染集合"></a>渲染集合</h4><pre><code class="jsx">//App.jsx
+const App = (props) =&gt; &#123;
+  const &#123; notes &#125; = props
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Notes&lt;/h1&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&#123;notes[0].content&#125;&lt;/li&gt;
+        &lt;li&gt;&#123;notes[1].content&#125;&lt;/li&gt;
+        &lt;li&gt;&#123;notes[2].content&#125;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+&#125;
+
+export default App
+</code></pre>
+<pre><code class="jsx">//main.jsx
+import React from &#39;react&#39;
+import ReactDOM from &#39;react-dom/client&#39;
+
+import App from &#39;./App&#39;
+
+const notes = [
+  &#123;
+    id: 1,
+    content: &#39;HTML is easy&#39;,
+    important: true
+  &#125;,
+  &#123;
+    id: 2,
+    content: &#39;Browser can execute only JavaScript&#39;,
+    important: false
+  &#125;,
+  &#123;
+    id: 3,
+    content: &#39;GET and POST are the most important methods of HTTP protocol&#39;,
+    important: true
+  &#125;
+]
+
+ReactDOM.createRoot(document.getElementById(&#39;root&#39;)).render(
+  &lt;App notes=&#123;notes&#125; /&gt;
+)
+</code></pre>
+<p>在上面的代码中，我们通过硬编码的方式渲染note：</p>
+<pre><code class="jsx">&lt;li&gt;&#123;notes[1].content&#125;&lt;/li&gt;
+</code></pre>
+<p>在实际开发中我们当然有更合理的方式—我们可以使用map函数来从数组对象中生成React元素：</p>
+<pre><code class="jsx">notes.map(note =&gt; &lt;li&gt;&#123;note.content&#125;&lt;/li&gt;)
+</code></pre>
+<h4 id="key属性"><a href="#key属性" class="headerlink" title="key属性"></a>key属性</h4><p>上面的程序看起来能正常工作，但是在终端里会有一个警告：</p>
+<p><img src="/..%5Cimages%5CFullstack%5Cpart2%5C%E8%AD%A6%E5%91%8A-list%E5%85%83%E7%B4%A0%E6%B2%A1%E6%9C%89key.png" alt="警告-list元素没有key"></p>
+<p>错误信息，同时也是React想表达的，建议我们由map方法生成的list项必须都有独特的key值：即叫做key的属性。</p>
+<p>添加key属性：</p>
+<pre><code class="jsx">&#123;notes.map(note =&gt; 
+     &lt;li key=&#123;note.id&#125;&gt;
+        &#123;note.content&#125;
+     &lt;/li&gt;
+)&#125;
+</code></pre>
+<p>React使用数组中的对象的key属性来决定当组件被重新渲染时如何更新由组件生成的视图(view)。</p>
+<h4 id="反模式：数组索引作为key"><a href="#反模式：数组索引作为key" class="headerlink" title="反模式：数组索引作为key"></a>反模式：数组索引作为key</h4><pre><code class="jsx">&lt;ul&gt;
+  &#123;notes.map((note, i) =&gt; 
+    &lt;li key=&#123;i&#125;&gt;
+      &#123;note.content&#125;
+    &lt;/li&gt;
+  )&#125;
+&lt;/ul&gt;
+</code></pre>
+<p>即使这样做能够工作，并且终端也没有警告信息，但是仍然不推荐这样做。详情见<a target="_blank" rel="noopener" href="https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318">这篇文章</a>。</p>
+<h4 id="重构模块"><a href="#重构模块" class="headerlink" title="重构模块"></a>重构模块</h4><p>让我们把代码写得更简单明了一些：</p>
+<pre><code class="jsx">const Note = (&#123; note &#125;) =&gt; &#123;
+  return (
+    &lt;li&gt;&#123;note.content&#125;&lt;/li&gt;
+  )
+&#125;
+
+const App = (&#123; notes &#125;) =&gt; &#123;
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Notes&lt;/h1&gt;
+      &lt;ul&gt;
+        &#123;notes.map(note =&gt; 
+          &lt;Note key=&#123;note.id&#125; note=&#123;note&#125; /&gt;
+        )&#125;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p><strong>NB</strong> key属性必须定义在Note组件上，而不是li上！</p>
+<p>我们使用过很多次模块了，main.jsx的前几行：</p>
+<pre><code class="jsx">import ReactDOM from &quot;react-dom/client&quot;
+
+import App from &quot;./App&quot;
+</code></pre>
+<p>引入了两个模块。</p>
+<p>我们说：模块<em>react-dom&#x2F;client</em> <strong>被放进</strong>(placed into)变量<em>ReactDOM</em>中，定义应用的主组件的模块<strong>被放进</strong>变量App中。</p>
+<p>模块输出：</p>
+<pre><code class="jsx">const Note = (&#123; note &#125;) =&gt; &#123;
+  return (
+    &lt;li&gt;&#123;note.content&#125;&lt;/li&gt;
+  )
+&#125;
+
+export default Note
+</code></pre>
+<p>上面模块的最后一行输出被声明的模块，即变量Note。</p>
+<h3 id="b-表单"><a href="#b-表单" class="headerlink" title="b. 表单"></a>b. 表单</h3><h4 id="将notes保存进组件状态中"><a href="#将notes保存进组件状态中" class="headerlink" title="将notes保存进组件状态中"></a>将notes保存进组件状态中</h4><p>用useStates定义状态：</p>
+<pre><code class="jsx">//App.jsx
+import &#123; useState &#125; from &#39;react&#39;
+import Note from &#39;./components/Note&#39;
+
+const App = (props) =&gt; &#123;
+  const [notes, setNotes] = useState(props.notes) //定义状态，用props中的notes来初始化该状态
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Notes&lt;/h1&gt;
+      &lt;ul&gt;
+        &#123;notes.map(note =&gt; 
+          &lt;Note key=&#123;note.id&#125; note=&#123;note&#125; /&gt;
+        )&#125;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  )
+&#125;
+
+export default App 
+</code></pre>
+<p>添加HTML表单到组件中，表单用于添加新的笔记(notes)：</p>
+<pre><code class="jsx">const App = (props) =&gt; &#123;
+  const [notes, setNotes] = useState(props.notes)
+
+  const addNote = (event) =&gt; &#123;
+    event.preventDefault()
+    console.log(&#39;button clicked&#39;, event.target)
+  &#125;
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Notes&lt;/h1&gt;
+      &lt;ul&gt;
+        &#123;notes.map(note =&gt; 
+          &lt;Note key=&#123;note.id&#125; note=&#123;note&#125; /&gt;
+        )&#125;
+      &lt;/ul&gt;
+      &lt;form onSubmit=&#123;addNote&#125;&gt; 
+        &lt;input /&gt;
+        &lt;button type=&quot;submit&quot;&gt;save&lt;/button&gt;
+      &lt;/form&gt;   
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>对比原来的代码，我们添加了<em>addNote</em>函数作为表单元素的事件处理器，函数会在通过点击提交按钮提交表单时被调用。</p>
+<p><em>addNote</em>的event参数是触发对事件处理器函数进行调用的事件。</p>
+<p>在<em>addNote</em>函数体中我们还调用了*event.preventDefault()*方法，如果不这样做的话，在提交表单时页面会重新加载。</p>
+<h4 id="受控组件"><a href="#受控组件" class="headerlink" title="受控组件"></a>受控组件</h4><p>添加新的状态，给状态命名为newNote，新的状态用来存储用户提交的输入并且让我们将它设置成输入元素的<em>value</em>属性：</p>
+<pre><code class="jsx">//App.jsx
+const App = (props) =&gt; &#123;
+  const [notes, setNotes] = useState(props.notes)
+  const [newNote, setNewNote] = useState(
+    &#39;a new note...&#39;
+  ) 
+
+  const addNote = (event) =&gt; &#123;
+    event.preventDefault()
+    console.log(&#39;button clicked&#39;, event.target)
+  &#125;
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Notes&lt;/h1&gt;
+      &lt;ul&gt;
+        &#123;notes.map(note =&gt; 
+          &lt;Note key=&#123;note.id&#125; note=&#123;note&#125; /&gt;
+        )&#125;
+      &lt;/ul&gt;
+      &lt;form onSubmit=&#123;addNote&#125;&gt;
+        &lt;input value=&#123;newNote&#125; /&gt;
+        &lt;button type=&quot;submit&quot;&gt;save&lt;/button&gt;
+      &lt;/form&gt;   
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p><strong>注意</strong>：只是让input的value属性接收newNote并不会让input改变时，input的显示内容也改变。因为input在没有注册事件处理器时，改变input的value属性不会触发事件，而没有事件触发也就意味着App组件的状态没有改变(没有调用setNewNote方法)，也就不会让页面重新渲染。就算用其它方式(比如调用render方法)让App重新渲染，由于newNote这个状态始终没有发生改变，input的value属性就一直都是newNote的初始值。</p>
+<p>因为我们将App的一个状态赋给了input元素的value属性，所以App组件现在在控制input元素的行为。但是现在我们只是让input的value接收状态newNote的值，如果想要在对input进行改变时，input的value也随之改变，我们需要注册<em>onChange</em>事件：</p>
+<pre><code class="jsx">  const handleNoteChange = (event) =&gt; &#123;
+    console.log(event.target.value)
+    setNewNote(event.target.value)
+  &#125;
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Notes&lt;/h1&gt;
+      &lt;ul&gt;
+        &#123;notes.map(note =&gt; 
+          &lt;Note key=&#123;note.id&#125; note=&#123;note&#125; /&gt;
+        )&#125;
+      &lt;/ul&gt;
+      &lt;form onSubmit=&#123;addNote&#125;&gt;
+        &lt;input
+          value=&#123;newNote&#125;
+          onChange=&#123;handleNoteChange&#125;
+        /&gt;
+        &lt;button type=&quot;submit&quot;&gt;save&lt;/button&gt;
+      &lt;/form&gt;   
+    &lt;/div&gt;
+  )
+&#125;
+</code></pre>
+<p>这里我们不需要调用*event.preventDefault()*方法，因为在input改变时<strong>没有默认行为发生</strong>。</p>
+<p>定义创建新笔记的方法：</p>
+<pre><code class="jsx">const addNote = (event) =&gt; &#123;
+  event.preventDefault()
+  const noteObject = &#123;
+    content: newNote,
+    important: Math.random() &lt; 0.5,
+    id: notes.length + 1,
+  &#125;
+
+  setNotes(notes.concat(noteObject))
+  setNewNote(&#39;&#39;)
+&#125;
+</code></pre>
+<h3 id="c-从服务器获取数据"><a href="#c-从服务器获取数据" class="headerlink" title="c. 从服务器获取数据"></a>c. 从服务器获取数据</h3><h4 id="工具-JSON-server"><a href="#工具-JSON-server" class="headerlink" title="工具-JSON server"></a>工具-JSON server</h4><p>使用npm全局安装：</p>
+<pre><code class="shell">npm install -g json-server
+</code></pre>
+<p>json-server默认端口为3000，我们可以通过–port选项使用另外的端口；–watch选项让服务器自动检测任何对db.json的保存改动：</p>
+<pre><code class="shell">json-server --port 3001 --watch db.json
+</code></pre>
+<p>如果没有全局安装json-server，也可以使用下面的命令：</p>
+<pre><code class="shell">npx json-server --port 3001 --watch db.json
+</code></pre>
+<h4 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h4><p>识别npm项目的一个方式是看项目根目录有没有package.json文件。</p>
+<p>安装axios：</p>
+<pre><code class="shell">npm install axios
+</code></pre>
+<p>通过下面的命令将<em>json-server</em>安装成开发者依赖：</p>
+<pre><code class="shell">npm install json-server --save-dev
+</code></pre>
+<p>在package.json脚本部分添加：</p>
+<pre><code>&quot;server&quot;: &quot;json-server -p3001 --watch db.json&quot;
+</code></pre>
+<p>现在我们可以方便地在根目录使用命令：</p>
+<pre><code class="shell">npm run server
+</code></pre>
+<p>来启动json-server，并且是以想要的选项来启动。</p>
+<p>我们用npm安装了两个软件(暂且叫软件吧)：</p>
+<pre><code class="shell">npm install axios
+npm install json-server --save-dev
+</code></pre>
+<p>可以看到参数有些不同：axios被安装成应用的运行时依赖，因为程序的执行需要该库的存在；而json-server被安装成开发者依赖(–save-dev)，因为应用本身不要求它，它是为了帮助开发而安装的。</p>
+<h4 id="Axios和promises"><a href="#Axios和promises" class="headerlink" title="Axios和promises"></a>Axios和promises</h4><p>添加下面的代码到main.jsx中：</p>
+<pre><code class="jsx">import axios from &#39;axios&#39;
+
+const promise = axios.get(&#39;http://localhost:3001/notes&#39;)
+console.log(promise)
+
+const promise2 = axios.get(&#39;http://localhost:3001/foobar&#39;)
+console.log(promise2)
+</code></pre>
+<p>Axios的方法get返回一个<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">promise</a>。</p>
+<p>如果我们想访问promise表示的操作的结果，必须给promise注册一个事件处理器，这是通过使用方法<em>then</em>实现的：</p>
+<pre><code class="jsx">axios
+  .get(&#39;http://localhost:3001/notes&#39;)
+  .then(response =&gt; &#123;
+    const notes = response.data
+    console.log(notes)
+  &#125;)
+</code></pre>
+<h4 id="Effect钩子"><a href="#Effect钩子" class="headerlink" title="Effect钩子"></a>Effect钩子</h4><p>React官方对Effect钩子的描述：Effect钩子让你能够在函数组件上造成副作用。取数据，设置订阅，和手动修改React组件中的DOM都是副作用的例子。</p>
+<p>修改App.jsx:</p>
+<pre><code class="jsx">import &#123; useState, useEffect &#125; from &#39;react&#39;
+import axios from &#39;axios&#39;
+import Note from &#39;./components/Note&#39;
+
+
+const App = () =&gt; &#123;
+  const [notes, setNotes] = useState([])
+  const [newNote, setNewNote] = useState(&#39;&#39;)
+  const [showAll, setShowAll] = useState(true)
+
+
+  useEffect(() =&gt; &#123;
+    console.log(&#39;effect&#39;)
+    axios
+      .get(&#39;http://localhost:3001/notes&#39;)
+      .then(response =&gt; &#123;
+        console.log(&#39;promise fulfilled&#39;)
+        setNotes(response.data)
+      &#125;)
+  &#125;, [])
+  console.log(&#39;render&#39;, notes.length, &#39;notes&#39;)
+
+  // ...
+&#125;
+</code></pre>
+<p>几个log打印顺序：</p>
+<pre><code>render 0 notes
+effect
+promise fulfilled
+render 3 notes
+</code></pre>
+<p>打印顺序的解释：</p>
+<ol>
+<li>App组件被渲染，App函数代码要被执行一遍，所以会打印render 0 notes。</li>
+<li>在App组件第一次渲染完成后，useEffect注册的事件处理器开始执行，所以会打印effect。</li>
+<li>接着执行，调用了axios的get方法，然后对get的返回结果调用then方法，由于数据正常接收，then方法中注册的事件处理器会开始执行，导致promise fulfilled被打印。接着notes数据被设置。</li>
+<li>由于上一步改动了组件状态，组件会被重新渲染，导致render 3 notes被打印。</li>
+</ol>
+<p><strong>注意</strong>：默认情况下useEffect注册的函数会在组件每一次重新渲染时被执行，这里之所以只在第一次组件渲染后执行，是因为我们传给useEffect的第二个参数为[]—空数组，对于useEffect参数的讨论详见<a target="_blank" rel="noopener" href="https://react.dev/reference/react/useEffect#parameters%E3%80%82">https://react.dev/reference/react/useEffect#parameters。</a></p>
+<h4 id="开发时的运行时环境"><a href="#开发时的运行时环境" class="headerlink" title="开发时的运行时环境"></a>开发时的运行时环境</h4><p>下面的图片描述了当前我们的notes应用的组成：<img src="/..%5Cimages%5CFullstack%5Cpart2%5Cnotes%E5%BA%94%E7%94%A8%E7%9A%84%E7%BB%84%E6%88%90.png" alt="notes应用的组成"></p>
+<p>组成我们的React应用的JS代码运行在浏览器中。浏览器从React开发服务器获取JS代码，开发服务器将真正的代码文件转换成浏览器能够理解的格式，它将来自不同文件的JS代码糅合成一个文件。</p>
+<p>运行在浏览器中的React应用从<em>json-server</em>中获取JSON数据，而<em>json-server</em>从db.json获取数据。</p>
+<h3 id="d-修改服务器中的数据"><a href="#d-修改服务器中的数据" class="headerlink" title="d. 修改服务器中的数据"></a>d. 修改服务器中的数据</h3><h4 id="向服务器发送数据"><a href="#向服务器发送数据" class="headerlink" title="向服务器发送数据"></a>向服务器发送数据</h4><p>修改负责创建新笔记的事件处理器：</p>
+<pre><code class="jsx">addNote = event =&gt; &#123;
+  event.preventDefault()
+  const noteObject = &#123;
+    content: newNote,
+    important: Math.random() &lt; 0.5,
+  &#125;
+
+  axios
+    .post(&#39;http://localhost:3001/notes&#39;, noteObject)
+    .then(response =&gt; &#123;
+      setNotes(notes.concat(response.data))
+      setNewNote(&#39;&#39;)
+    &#125;)
+&#125;
+</code></pre>
+<p>这里我们不再自己设置新note的id，而是让服务器设置。</p>
+<h4 id="将与后端通信的逻辑提取成单独的模块"><a href="#将与后端通信的逻辑提取成单独的模块" class="headerlink" title="将与后端通信的逻辑提取成单独的模块"></a>将与后端通信的逻辑提取成单独的模块</h4><p>在加入与后端通信的逻辑后App组件变得臃肿了。出于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Single_responsibility_principle">单一职责准则</a>，我们考虑将与服务器通信的逻辑提取成专门的模块。</p>
+<p>创建<em>src&#x2F;services</em>目录并且在该目录添加一个叫做notes.js的文件：</p>
+<pre><code class="js">import axios from &#39;axios&#39;
+const baseUrl = &#39;http://localhost:3001/notes&#39;
+
+const getAll = () =&gt; &#123;
+  const request = axios.get(baseUrl)
+  return request.then(response =&gt; response.data)
+&#125;
+
+const create = newObject =&gt; &#123;
+  const request = axios.post(baseUrl, newObject)
+  return request.then(response =&gt; response.data)
+&#125;
+
+const update = (id, newObject) =&gt; &#123;
+  const request = axios.put(`$&#123;baseUrl&#125;/$&#123;id&#125;`, newObject)
+  return request.then(response =&gt; response.data)
+&#125;
+
+&#123; 
+  getAll, 
+  create, 
+  update 
+&#125;
+</code></pre>
+<p>App组件使用import来获取对上面定义的模块的使用权：</p>
+<pre><code class="jsx">import noteService from &#39;./services/notes&#39;
+
+const App = () =&gt; &#123;
+</code></pre>
+<p>模块的几个函数(getAll, create, update)可以通过引入的变量<em>noteService</em>直接使用：</p>
+<pre><code class="jsx">const App = () =&gt; &#123;
+  // ...
+
+  useEffect(() =&gt; &#123;
+    noteService // 看这里！！！！！！
+      .getAll()
+      .then(initialNotes =&gt; &#123;
+        setNotes(initialNotes)
+      &#125;)
+  &#125;, [])
+
+  const toggleImportanceOf = id =&gt; &#123;
+    const note = notes.find(n =&gt; n.id === id)
+    const changedNote = &#123; ...note, important: !note.important &#125;
+
+    noteService // 看这里！！！！！！
+      .update(id, changedNote)
+      .then(returnedNote =&gt; &#123;
+        setNotes(notes.map(note =&gt; note.id !== id ? note : returnedNote))
+      &#125;)
+  &#125;
+
+  const addNote = (event) =&gt; &#123;
+    event.preventDefault()
+    const noteObject = &#123;
+      content: newNote,
+      important: Math.random() &gt; 0.5
+    &#125;
+
+    noteService // 看这里！！！！！！
+      .create(noteObject)
+      .then(returnedNote =&gt; &#123;
+        setNotes(notes.concat(returnedNote))
+        setNewNote(&#39;&#39;)
+      &#125;)
+  &#125;
+
+  // ...
+&#125;
+</code></pre>
+<h3 id="e-为React应用添加样式"><a href="#e-为React应用添加样式" class="headerlink" title="e. 为React应用添加样式"></a>e. 为React应用添加样式</h3><p>在普通HTML文件里类的定义是作为元素的<strong>class</strong>属性的：</p>
+<pre><code class="html">&lt;li class=&quot;note&quot;&gt;some text...&lt;/li&gt;
+</code></pre>
+<p>然而在React中我们要使用<strong>className</strong>属性:</p>
+<pre><code class="jsx">return (
+    &lt;li className=&#39;note&#39;&gt;
+      &#123;note.content&#125; 
+      &lt;button onClick=&#123;toggleImportance&#125;&gt;&#123;label&#125;&lt;/button&gt;
+    &lt;/li&gt;
+  )
+</code></pre>
+<h2 id="part3"><a href="#part3" class="headerlink" title="part3"></a>part3</h2><h3 id="a-Node-js和Express"><a href="#a-Node-js和Express" class="headerlink" title="a. Node.js和Express"></a>a. Node.js和Express</h3><p>找一个目录，在终端执行<code>npm init</code>，会得到一个package.json文件：</p>
+<pre><code class="json">&#123;
+  &quot;name&quot;: &quot;test&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: &#123;
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+  &#125;,
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+&#125;
+</code></pre>
+<p>我们可以自己添加一点内容：</p>
+<pre><code class="json">&#123;
+  // ...
+  &quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;node index.js&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  // ...
+&#125;
+</code></pre>
+<p>创建文件index.js，键入几行JS代码，就可以测试一下我们的配置是否生效：</p>
+<pre><code class="shell">node index.js
+//或者 npm start
+</code></pre>
+<h4 id="简单的web服务器"><a href="#简单的web服务器" class="headerlink" title="简单的web服务器"></a>简单的web服务器</h4><p>首先编辑index.js的内容：</p>
+<pre><code class="js">const http = require(&#39;http&#39;) //引入Node的内置web server模块
+
+// 创建新的web服务器，服务器注册了一个事件处理器，在每次HTTP请求到达地址
+// &quot;http://localhost:3001&quot;时调用它。
+const app = http.createServer((request, response) =&gt; &#123;
+  //响应状态码200，Content-Type设置为text/plain
+  response.writeHead(200, &#123; &#39;Content-Type&#39;: &#39;text/plain&#39; &#125;)
+    
+  //返回内容为Hello World
+  response.end(&#39;Hello World&#39;)
+&#125;)
+
+//在端口3001监听
+const PORT = 3001
+app.listen(PORT)
+console.log(`Server running on port $&#123;PORT&#125;`)
+</code></pre>
+<p>当前浏览器中的代码使用ES6模块，模块用export定义，用import引入以使用。然而Node.js使用所谓的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CommonJS">CommonJS</a>模块，这是因为Node生态在JS在语言规范中支持模块前就对模块有需求了，现在Node.js也支持ES6模块，但是并不能完美的支持。</p>
+<p>将代码改得更复杂一点：</p>
+<pre><code class="js">const http = require(&#39;http&#39;)
+
+
+let notes = [
+  &#123;
+    id: 1,
+    content: &quot;HTML is easy&quot;,
+    important: true
+  &#125;,
+  &#123;
+    id: 2,
+    content: &quot;Browser can execute only JavaScript&quot;,
+    important: false
+  &#125;,
+  &#123;
+    id: 3,
+    content: &quot;GET and POST are the most important methods of HTTP protocol&quot;,
+    important: true
+  &#125;
+]
+
+const app = http.createServer((request, response) =&gt; &#123;
+  //注意这里的Content-Type发生了变化
+  response.writeHead(200, &#123; &#39;Content-Type&#39;: &#39;application/json&#39; &#125;)
+  
+  //将notes转换成JSON字符串
+  response.end(JSON.stringify(notes))
+&#125;)
+
+const PORT = 3001
+app.listen(PORT)
+console.log(`Server running on port $&#123;PORT&#125;`)
+</code></pre>
+<h4 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h4><p>将Express加入项目依赖：</p>
+<pre><code class="shell">npm install express
+</code></pre>
+<p>此时查看项目<em>node_modules</em>目录，可以看到除了Express库，还有许多其它的库，这些库是express库的依赖和这些依赖的依赖。这些依赖被叫做我们项目的<a target="_blank" rel="noopener" href="https://lexi-lambda.github.io/blog/2016/08/24/understanding-the-npm-dependency-model/">传递依赖</a> 。</p>
+<p>在安装express后，package.json也会变化，主要是这一处：</p>
+<pre><code class="json">&quot;express&quot;: &quot;^4.18.2&quot;
+</code></pre>
+<p>npm使用的版本控制模型叫做语义版本控制。</p>
+<p>版本号”4.18.2”前面的插入符”^”表示：当项目的依赖更新时，express的安装版本<strong>至少</strong>是”4.18.2”，可能会比”4.18.2”高，但是库的主版本号(由第一个主数字表示)必须相同。如果一个依赖的主号不变，那么其新版本应该是向后兼容的。</p>
+<h4 id="web和express"><a href="#web和express" class="headerlink" title="web和express"></a>web和express</h4><p>回到我们的服务器demo，对其进行修改：</p>
+<pre><code class="js">const express = require(&#39;express&#39;)
+
+//创建express应用
+const app = express()
+
+let notes = [
+  // ...
+]
+
+//定义两个路由
+app.get(&#39;/&#39;, (request, response) =&gt; &#123;
+  //因为参数是字符串，express自动设置Content-Type为text/html
+  response.send(&#39;&lt;h1&gt;Hello World!&lt;/h1&gt;&#39;)
+&#125;)
+
+app.get(&#39;/api/notes&#39;, (request, response) =&gt; &#123;
+  //不用手动将notes转成JSON字符串
+  response.json(notes)
+&#125;)
+
+const PORT = 3001
+app.listen(PORT, () =&gt; &#123;
+  console.log(`Server running on port $&#123;PORT&#125;`)
+&#125;)
+</code></pre>
+<h4 id="nodemon"><a href="#nodemon" class="headerlink" title="nodemon"></a>nodemon</h4><p>每次我们对服务器代码修改后，都要按<em>Ctrl+c</em>关闭服务器，然后再启动。为了解决这一问题，我们会安装 <a target="_blank" rel="noopener" href="https://github.com/remy/nodemon">nodemon</a>，nodemon在启动后会监控启动nodemon命令的目录，如果目录里有保存的文件修改操作，nodemon会自动重启你的node应用。</p>
+<p>安装nodemon：</p>
+<pre><code class="shell">npm install --save-dev nodemon
+</code></pre>
+<p>这次我们以nodemon启动我们的应用：</p>
+<pre><code class="shell">node_modules/.bin/nodemon index.js
+</code></pre>
+<p>我们还可以将上面的命令定义成npm脚本：</p>
+<pre><code class="json">&#123;
+  // ..
+  &quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;node index.js&quot;,
+    &quot;dev&quot;: &quot;nodemon index.js&quot;,
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  &#125;,
+  // ..
+&#125;
+</code></pre>
+<p>注意我们这次没有指定node_modules&#x2F;.bin&#x2F;nodemon，而是直接使用nodemon，因为npm知道要从.bin目录搜索nodemon程序。</p>
+<p>之后我们再以nodemon方式运行服务器就更简单了：</p>
+<pre><code class="shell">npm run dev
+</code></pre>
+<p>与<em>start</em>和<em>test</em>脚本命令不同，我们必须添加”run”到命令中，因为它不是一个原生(native)脚本。</p>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>Representational State Transfer, 又名 REST，2000年由Roy Fielding的<a target="_blank" rel="noopener" href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">论文</a>引入。REST是一种用于构建弹性web应用的体系结构风格。事实上世界上大部分所谓的”REST”API都没有满足Fielding(人名)在论文中列出的准则。</p>
+<p>一个示例：</p>
+<table>
+<thead>
+<tr>
+<th align="left">URL</th>
+<th align="left">动词</th>
+<th align="left">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">notes&#x2F;10</td>
+<td align="left">GET</td>
+<td align="left">取单个资源</td>
+</tr>
+<tr>
+<td align="left">notes</td>
+<td align="left">GET</td>
+<td align="left">取资源集中的所有资源</td>
+</tr>
+<tr>
+<td align="left">notes</td>
+<td align="left">POST</td>
+<td align="left">基于请求数据创建新资源</td>
+</tr>
+<tr>
+<td align="left">notes&#x2F;10</td>
+<td align="left">DELETE</td>
+<td align="left">删除指定的资源</td>
+</tr>
+<tr>
+<td align="left">notes&#x2F;10</td>
+<td align="left">PUT</td>
+<td align="left">用请求数据替换指定资源的全部</td>
+</tr>
+<tr>
+<td align="left">notes&#x2F;10</td>
+<td align="left">PATCH</td>
+<td align="left">用请求数据替换指定资源的部分</td>
+</tr>
+</tbody></table>
+<h4 id="取单个资源"><a href="#取单个资源" class="headerlink" title="取单个资源"></a>取单个资源</h4><p>在express中我们使用”:”语法来为路由定义参数：</p>
+<pre><code class="js">app.get(&#39;/api/notes/:id&#39;, (request, response) =&gt; &#123;
+  const id = Number(request.params.id)
+  const note = notes.find(note =&gt; note.id === id)
+  
+  if (note) &#123;
+    response.json(note)
+  &#125; else &#123;
+    response.status(404).end()
+  &#125;
+&#125;)
+</code></pre>
+<p>一个请求的路由中的<em>id</em>参数可以通过request对象获取：</p>
+<pre><code class="js">const id = request.params.id
+</code></pre>
+<p>当所查询的id在notes中找不到时我们使用response对象的status方法来设置响应码为404，并且以end()方法表示我们对请求做出响应，但是响应不包含数据。</p>
+<h4 id="删除资源"><a href="#删除资源" class="headerlink" title="删除资源"></a>删除资源</h4><pre><code class="js">app.delete(&#39;/api/notes/:id&#39;, (request, response) =&gt; &#123;
+  const id = Number(request.params.id)
+  notes = notes.filter(note =&gt; note.id !== id)
+
+  response.status(204).end()
+&#125;)
+</code></pre>
+<p>删除我们以状态码 <a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-204-no-content">204 no content</a>来响应请求，并且响应不返回数据。</p>
+<p>对于一个对应资源不存在的DELETE请求应该以什么状态码返回并没有共识。仅有的选项是204或404，这里出于简单性我们选择204。</p>
+<h4 id="VS-Code插件：REST-client"><a href="#VS-Code插件：REST-client" class="headerlink" title="VS Code插件：REST client"></a>VS Code插件：REST client</h4><p>REST client允许你在VS Code中发送请求和查看请求结果。</p>
+<p>简单使用步骤：</p>
+<ol>
+<li>在项目根目录下创建目录<em>requests</em>，我们将把所有REST client请求文件保存在该目录中，请求文件以.rest结尾。</li>
+<li>创建<em>get_all_notes.rest</em> 文件，内容为<code>GET http://localhost:3001/api/notes</code>。</li>
+<li>点击<code>GET http://localhost:3001/api/notes</code>上方的<code>Send Request</code>即可发送请求并查看响应结果。</li>
+</ol>
+<h4 id="接收数据"><a href="#接收数据" class="headerlink" title="接收数据"></a>接收数据</h4><pre><code class="js">const express = require(&#39;express&#39;)
+const app = express()
+
+app.use(express.json())
+
+//...
+
+app.post(&#39;/api/notes&#39;, (request, response) =&gt; &#123;
+  const note = request.body
+  console.log(note)
+  response.json(note)
+&#125;)
+</code></pre>
+<p>注意<code>app.use(express.json())</code>这一句很重要，没有这一句reques下面的事件处理器接收到的数据将是undefined。json-parser函数(就是<code>app.use(express.json())</code>带来的效果)会在事件处理器处理请求前将JSON数据转换成JS对象。</p>
+<h4 id="关于请求类型"><a href="#关于请求类型" class="headerlink" title="关于请求类型"></a>关于请求类型</h4><p><a target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc9110.html#name-common-method-properties">HTTP标准</a>讨论了两个与请求类型有关的性质：安全性和幂等性。</p>
+<p><strong>注意</strong>：这两个性质是HTTP标准的<strong>推荐</strong>，而不是<strong>保证</strong>。即我们设计应用程序时应该考虑这些性质，HTTP标准本身并不会保证这些性质。只要我们的应用坚持RESTful准则，这两个性质就能有保证。</p>
+<p>HTTP GET和HEAD方法应该满足安全性要求：除了检索数据外对数据没有<strong>副作用</strong>。</p>
+<p>HEAD与GET方法工作方式应该非常相似，除了它不会返回除状态码和响应头外的<strong>任何东西</strong>。当执行HEAD请求时<strong>响应体不会被返回</strong>。</p>
+<p>任何除POST请求外的HTTP请求都应该是幂等的(<em>idempotent</em>)：</p>
+<p>幂等方法表示进行大于0次相同的请求，副作用<strong>都与单次请求相同</strong>(除了发生错误或过期的情况)。<em>GET, HEAD, PUT 和 DELETE</em> 都共享该性质。</p>
+<p>POST是唯一一个既不安全也不幂等的HTTP请求类型。</p>
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><p>之间我们用到的 <a target="_blank" rel="noopener" href="https://expressjs.com/en/api.html">json-parser</a>就是所谓的中间件(还记得<code>app.use(express.json())</code>这一句代码吗)。中间件事可以被用来处理<em>request</em> 和 <em>response</em>请求的函数。</p>
+<p>实现自己的中间件：打印每一个发送到服务器的请求相关的信息。一个中间件是一个接受三个参数的函数：</p>
+<pre><code class="js">const requestLogger = (request, response, next) =&gt; &#123;
+  console.log(&#39;Method:&#39;, request.method)
+  console.log(&#39;Path:  &#39;, request.path)
+  console.log(&#39;Body:  &#39;, request.body)
+  console.log(&#39;---&#39;)
+  next()
+&#125;
+</code></pre>
+<p>函数体的最后一句中，<em>next</em>函数被调用，对下一次中间件产生控制作用。</p>
+<p>使用中间件：</p>
+<pre><code class="js">app.use(requestLogger)
+</code></pre>
+<p>中间件以被express服务器对象的use方法注册的先后顺序被调用。</p>
+<h3 id="b-部署应用到互联网"><a href="#b-部署应用到互联网" class="headerlink" title="b. 部署应用到互联网"></a>b. 部署应用到互联网</h3><h4 id="同源策略和CORS"><a href="#同源策略和CORS" class="headerlink" title="同源策略和CORS"></a>同源策略和CORS</h4><p>一个URL的源(origin)由协议(也叫模式),主机名和端口来定义。</p>
+<pre><code>http://example.com:80/index.html
+  
+protocol: http
+host: example.com
+port: 80
+</code></pre>
+<p>当你访问一个网站时，服务器会响应一个HTML文件，该文件可能存在对外部资源的引用。当浏览器在HTML文件中看到对一个URL的引用时会发起请求，如果请求通过取HTML文件时的URL发出，则浏览器处理该请求不会有任何问题；然而，如果资源通过一个与源(source)HTML不同源(origin)的URL发出，浏览器一定会检查<em>Access-Control-Allow-origin</em>响应头，如果它包含*或者源HTML的URL，浏览器会处理该响应，否则浏览器会拒绝处理它并抛出错误。</p>
+<p>同源策略是由浏览器实现的一个安全机制，目的是防止会话劫持和一些其它的安全漏洞。为了进行合法的跨域请求(请求不同源的URL)，W3C制定了叫CORS(Cross-Origin Resource Sharing)的机制。<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">维基百科</a></p>
+<p>我们可以通过使用Node的<a target="_blank" rel="noopener" href="https://github.com/expressjs/cors">cors</a>中间件允许来自其它源的请求。在后端项目中安装cors：</p>
+<pre><code class="shell">npm install cors
+</code></pre>
+<p>使用该中间件以允许来自所有域的请求：</p>
+<pre><code class="js">const cors = require(&#39;cors&#39;)
+
+app.use(cors())
+</code></pre>
+<p>这样前端就能工作了！</p>
+<h4 id="从后端提供静态文件"><a href="#从后端提供静态文件" class="headerlink" title="从后端提供静态文件"></a>从后端提供静态文件</h4><p>在前端开发目录中执行：</p>
+<pre><code class="shell">npm run build
+</code></pre>
+<p>将会在项目根目录下生成一个dist目录，将dist目录拷贝到后端项目根目录下。之后可以从localhost:3001访问到前端。</p>
+<p>在前端修改baseUrl:</p>
+<pre><code class="js">const baseUrl = &#39;/api/notes&#39;
+</code></pre>
+<p>当前产品部署的设置：</p>
+<p><img src="/..%5Cimages%5CFullstack%5Cpart3%5C%E5%BD%93%E5%89%8Dnotes%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="当前notes应用设置"></p>
+<p>然后将应用部署到代码托管网站中，之后产品布局再次发生变化：</p>
+<p><img src="/..%5Cimages%5CFullstack%5Cpart3%5C%E9%83%A8%E7%BD%B2%E5%90%8Enotes%E5%BA%94%E7%94%A8%E8%AE%BE%E7%BD%AE.png" alt="部署后notes应用设置"></p>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><p>在前端修改baseUrl后，部署到代码托管网站上的代码能被正常使用，但是开发环境下(<code>npm run dev</code>)的前端代码不能正常工作了，因为到后端的连接已经失效。</p>
+<p>如果项目使用vite构建，将这个问题很好解决：</p>
+<pre><code class="js">//vite.config.json
+import &#123; defineConfig &#125; from &#39;vite&#39;
+import react from &#39;@vitejs/plugin-react&#39;
+
+// https://vitejs.dev/config/
+export default defineConfig(&#123;
+  plugins: [react()],
+  server: &#123;
+    proxy: &#123;
+      &#39;/api&#39;: &#123;
+        target: &#39;http://localhost:3001&#39;,
+        changeOrigin: true,
+      &#125;,
+    &#125;
+  &#125;,
+&#125;)
+</code></pre>
+<p>(主要看server这一块)</p>
+<h3 id="c-将数据保存到MongoDB"><a href="#c-将数据保存到MongoDB" class="headerlink" title="c. 将数据保存到MongoDB"></a>c. 将数据保存到MongoDB</h3><h4 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h4><p>MongoDB是一种<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Document-oriented_database">文档数据库</a>(或者叫文档存储)，是一种计算机应用或数据存储系统，被设计来存储、检索和管理面向文档的数据(或者叫半结构化数据)。</p>
+<p>面向文档数据库是<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/NoSQL">NoSQL</a>数据库主要分类的一种。</p>
+<p>在后端项目文件夹中安装<a target="_blank" rel="noopener" href="http://mongoosejs.com/index.html">Mongoose</a>：</p>
+<pre><code class="shell">npm install mongoose
+</code></pre>
+<p>与数据库建立连接：</p>
+<pre><code class="js">//mongo.js
+const mongoose = require(&#39;mongoose&#39;)
+
+if (process.argv.length &lt; 3) &#123;
+    console.log(&#39;give password as argument&#39;)
+    process.exit(1)
+&#125;
+
+const password = process.argv[2]
+
+const url =
+    `mongodb+srv://fullstack:$&#123;password&#125;@cluster0.nc1rsng.mongodb.net/noteApp?retryWrites=true&amp;w=majority`
+
+mongoose.set(&#39;strictQuery&#39;, false)
+mongoose.connect(url)
+</code></pre>
+<h4 id="模式-schema"><a href="#模式-schema" class="headerlink" title="模式(schema)"></a>模式(schema)</h4><p>在建立到数据库的连接后，我们定义note的<a target="_blank" rel="noopener" href="http://mongoosejs.com/docs/guide.html">模式</a>和相匹配的<a target="_blank" rel="noopener" href="http://mongoosejs.com/docs/models.html">模型</a>：</p>
+<pre><code class="js">//mongo.js
+const noteSchema = new mongoose.Schema(&#123;
+  content: String,
+  important: Boolean,
+&#125;)
+
+const Note = mongoose.model(&#39;Note&#39;, noteSchema)
+</code></pre>
+<p>类似Mongo的文档数据库是无模式的，意味着数据库本身不关心存储在数据库中的数据的结构。</p>
+<p>Mongoose的理念是一个<strong>应用层面</strong>的模式被给到数据库中的数据，模式定义了存储到任意给定集(collection)的文档形状。</p>
+<h4 id="创建和保存对象"><a href="#创建和保存对象" class="headerlink" title="创建和保存对象"></a>创建和保存对象</h4><p>接下来，应用在Note模型的帮助下创建了一个note对象：</p>
+<pre><code class="js">//mongo.js
+const note = new Note(&#123;
+  content: &#39;HTML is Easy&#39;,
+  important: false,
+&#125;)
+</code></pre>
+<p>模型是基于提供的参数创建新对象的所谓<em>构造器函数</em>。</p>
+<p>保存对象到数据库是在save方法被调用时发生的，可以为该方法提供带事件处理器的then方法：</p>
+<pre><code class="js">//mongo.jsnote.save().then(result =&gt; &#123;
+  console.log(&#39;note saved!&#39;)
+  mongoose.connection.close()
+&#125;)
+</code></pre>
+<h4 id="连接后端到数据库"><a href="#连接后端到数据库" class="headerlink" title="连接后端到数据库"></a>连接后端到数据库</h4><p>模式的可配置选项：</p>
+<pre><code class="js">noteSchema.set(&#39;toJSON&#39;, &#123;
+  transform: (document, returnedObject) =&gt; &#123;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  &#125;
+&#125;)
+</code></pre>
+<h4 id="将数据库配置设计成单独的模块"><a href="#将数据库配置设计成单独的模块" class="headerlink" title="将数据库配置设计成单独的模块"></a>将数据库配置设计成单独的模块</h4><p>添加文件夹，命名为<em>models</em>。文件夹中添加问价<em>note.js</em>：</p>
+<pre><code class="js">const mongoose = require(&#39;mongoose&#39;)
+
+mongoose.set(&#39;strictQuery&#39;, false)
+
+
+const url = process.env.MONGODB_URI
+
+
+console.log(&#39;connecting to&#39;, url)
+
+mongoose.connect(url)
+
+  .then(result =&gt; &#123;
+    console.log(&#39;connected to MongoDB&#39;)
+  &#125;)
+  .catch((error) =&gt; &#123;
+    console.log(&#39;error connecting to MongoDB:&#39;, error.message)
+  &#125;)
+
+const noteSchema = new mongoose.Schema(&#123;
+  content: String,
+  important: Boolean,
+&#125;)
+
+noteSchema.set(&#39;toJSON&#39;, &#123;
+  transform: (document, returnedObject) =&gt; &#123;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  &#125;
+&#125;)
+
+
+module.exports = mongoose.model(&#39;Note&#39;, noteSchema)
+</code></pre>
+<p>定义Node模块与与定义ES6模块的方式有些不同，模块的公共接口通过设置一个值给<em>module.exports</em>定义。</p>
+<p>通过添加下面的代码到index.js中来引入模块：</p>
+<pre><code class="js">const Note = require(&#39;./models/note&#39;)
+</code></pre>
+<p>硬编码数据库地址到代码中并不是个好主意，所以我们通过<em>MONGODB_URI</em>环境变量来将地址传递给应用。</p>
+<p>定义环境变量的值的方式有许多种，一种是当程序启动时：</p>
+<pre><code class="shell">MONGODB_URI=address_here npm run dev
+</code></pre>
+<p>更精妙的方式是使用<a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv#readme">dotenv</a>库，可以通过npm安装它：</p>
+<pre><code class="shell">npm install dotenv
+</code></pre>
+<p>为了使用该库，我们创建一个叫.env的文件，环境变量就定义在该文件中：</p>
+<pre><code class="env">MONGODB_URI=mongodb+srv://fullstack:&lt;password&gt;@cluster0.o1opl.mongodb.net/noteApp?retryWrites=true&amp;w=majority
+PORT=3001
+</code></pre>
+<p>记得要在.gitignore中设置让git忽略该文件！</p>
+<p>修改inde.js文件：</p>
+<pre><code class="js">require(&#39;dotenv&#39;).config()
+const express = require(&#39;express&#39;)
+const app = express()
+
+const Note = require(&#39;./models/note&#39;)
+
+// ..
+
+
+const PORT = process.env.PORT
+app.listen(PORT, () =&gt; &#123;
+  console.log(`Server running on port $&#123;PORT&#125;`)
+&#125;)
+</code></pre>
+<h4 id="在路由处理器中使用数据库"><a href="#在路由处理器中使用数据库" class="headerlink" title="在路由处理器中使用数据库"></a>在路由处理器中使用数据库</h4><p>像这样创建新的note：</p>
+<pre><code class="js">app.post(&#39;/api/notes&#39;, (request, response) =&gt; &#123;
+  const body = request.body
+
+  if (body.content === undefined) &#123;
+    return response.status(400).json(&#123; error: &#39;content missing&#39; &#125;)
+  &#125;
+
+  const note = new Note(&#123;
+    content: body.content,
+    important: body.important || false,
+  &#125;)
+
+  note.save().then(savedNote =&gt; &#123;
+    response.json(savedNote)
+  &#125;)
+&#125;)
+</code></pre>
+<h4 id="将错误处理移动到中间件中"><a href="#将错误处理移动到中间件中" class="headerlink" title="将错误处理移动到中间件中"></a>将错误处理移动到中间件中</h4><p>让我们修改一下&#x2F;api&#x2F;notes&#x2F;:id路由的处理器以让它将error传递给<em>next</em>函数，next作为处理器的第三个参数被传入：</p>
+<pre><code class="js">app.get(&#39;/api/notes/:id&#39;, (request, response, next) =&gt; &#123;
+  Note.findById(request.params.id)
+    .then(note =&gt; &#123;
+      if (note) &#123;
+        response.json(note)
+      &#125; else &#123;
+        response.status(404).end()
+      &#125;
+    &#125;)
+
+    .catch(error =&gt; next(error))
+&#125;)
+</code></pre>
+<p>express<a target="_blank" rel="noopener" href="https://expressjs.com/en/guide/error-handling.html">错误处理器</a>以一个接收四个参数的函数来定义的中间件：</p>
+<pre><code class="js">const errorHandler = (error, request, response, next) =&gt; &#123;
+  console.error(error.message)
+
+  if (error.name === &#39;CastError&#39;) &#123;
+    return response.status(400).send(&#123; error: &#39;malformatted id&#39; &#125;)
+  &#125; 
+
+  next(error)
+&#125;
+
+// this has to be the last loaded middleware.
+app.use(errorHandler)
+</code></pre>
+<h4 id="中间件加载的顺序"><a href="#中间件加载的顺序" class="headerlink" title="中间件加载的顺序"></a>中间件加载的顺序</h4><p>中间件的执行顺序与它们被express用app.use加载的顺序相同。我们所使用的中间件的顺序：</p>
+<pre><code class="js">app.use(express.static(&#39;build&#39;))
+app.use(express.json())
+app.use(requestLogger)
+
+app.post(&#39;/api/notes&#39;, (request, response) =&gt; &#123;
+  const body = request.body
+  // ...
+&#125;)
+
+const unknownEndpoint = (request, response) =&gt; &#123;
+  response.status(404).send(&#123; error: &#39;unknown endpoint&#39; &#125;)
+&#125;
+
+// handler of requests with unknown endpoint
+app.use(unknownEndpoint)
+
+const errorHandler = (error, request, response, next) =&gt; &#123;
+  // ...
+&#125;
+
+// handler of requests with result to errors
+app.use(errorHandler)
+</code></pre>
+<h3 id="b-验证和ESLint"><a href="#b-验证和ESLint" class="headerlink" title="b. 验证和ESLint"></a>b. 验证和ESLint</h3><p>到现在为止我们的对数据验证的方式是在路由处理器中测试接收到的数据：</p>
+<pre><code class="js">app.post(&#39;/api/notes&#39;, (request, response) =&gt; &#123;
+  const body = request.body
+  if (body.content === undefined) &#123; // 测试content是否为空
+    return response.status(400).json(&#123; error: &#39;content missing&#39; &#125;)
+  &#125;
+
+  // ...
+&#125;)
+</code></pre>
+<p>一个更好的验证在数据存到数据库前验证其格式的方式是使用Mongoose带有的<a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/validation.html">validation</a>功能，我们可以为模式的每一个字段指定验证规则：</p>
+<pre><code class="js">const noteSchema = new mongoose.Schema(&#123;
+  content: &#123;
+    type: String,
+    minLength: 5,
+    required: true
+  &#125;,
+  important: Boolean
+&#125;)
+</code></pre>
+<p>minLength和required验证器是Mongoose <a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/validation.html#built-in-validators">built-in</a>的验证器。Mongoose<a target="_blank" rel="noopener" href="https://mongoosejs.com/docs/validation.html#custom-validators">自定义验证器</a>允许我们创建自己的验证器。</p>
+<p>存违反任意一个验证器限制的对象到数据库会抛出异常：</p>
+<pre><code class="js">app.post(&#39;/api/notes&#39;, (request, response, next) =&gt; &#123;
+  const body = request.body
+
+  const note = new Note(&#123;
+    content: body.content,
+    important: body.important || false,
+  &#125;)
+
+  note.save()
+    .then(savedNote =&gt; &#123;
+      response.json(savedNote)
+    &#125;)
+
+    .catch(error =&gt; next(error)
+&#125;)
+</code></pre>
+<p>让我们扩展我们的错误处理器，让它可以处理这些验证器错误：</p>
+<pre><code class="js">const errorHandler = (error, request, response, next) =&gt; &#123;
+  console.error(error.message)
+
+  if (error.name === &#39;CastError&#39;) &#123;
+    return response.status(400).send(&#123; error: &#39;malformatted id&#39; &#125;)
+
+  &#125; else if (error.name === &#39;ValidationError&#39;) &#123;
+    return response.status(400).json(&#123; error: error.message &#125;)
+  &#125;
+
+  next(error)
+&#125;
+</code></pre>
+<p>现在让我们在修改数据库中的某条数据前也要进行验证，相比之下<em>findOneAndUpdate</em>默认不会对参数进行验证，所以要验证的话稍稍麻烦一点：</p>
+<pre><code class="js">app.put(&#39;/api/notes/:id&#39;, (request, response, next) =&gt; &#123;
+  const &#123; content, important &#125; = request.body
+
+  Note.findByIdAndUpdate(
+    request.params.id, 
+    &#123; content, important &#125;,
+    &#123; new: true, runValidators: true, context: &#39;query&#39; &#125;
+  ) 
+    .then(updatedNote =&gt; &#123;
+      response.json(updatedNote)
+    &#125;)
+    .catch(error =&gt; next(error))
+&#125;)
+</code></pre>
+<h4 id="Lint"><a href="#Lint" class="headerlink" title="Lint"></a>Lint</h4><p>摘自维基百科：</p>
+<p>lint或linter指任何检测并且标记编程语言错误(包括风格错误)的工具。类Lint工具通常进行源代码的<strong>静态分析</strong>。</p>
+<p>许多语言都有其对应的Lint工具，就JS而言，当前领先的工具是 <a target="_blank" rel="noopener" href="https://eslint.org/">ESlint</a>。</p>
+<p>让我们将ESLint安装成一个开发依赖,并且初始化默认ESlint配置：</p>
+<pre><code class="shell">npm install eslint --save-dev
+npx eslint --init
+</code></pre>
+<p>跟着一步一步的选择，我选择了airbnb代码风格。ESLint会生成一个配置文件*.eslintrc.js*。</p>
+<p>检查并且验证一个像index.js这样的文件可以这样做：</p>
+<pre><code class="shell">npx eslint index.js
+</code></pre>
+<p>现在如果我们执行<code>npx eslint index.js</code>会让dist目录也被检测，为了避免该问题我们需要创建 <a target="_blank" rel="noopener" href="https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories">.eslintignore</a>文件并输入下面的内容：</p>
+<pre><code>dist
+</code></pre>
+<p>为了让我们一直能够看到语法错误，我们可以安装VSCode ESlint。</p>
+<h2 id="part4"><a href="#part4" class="headerlink" title="part4"></a>part4</h2><h3 id="a-后端应用的结构，测试入门"><a href="#a-后端应用的结构，测试入门" class="headerlink" title="a. 后端应用的结构，测试入门"></a>a. 后端应用的结构，测试入门</h3><h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><p>在进入测试话题前让我们先修改后端项目结构来满足Node.js的最佳实践。我们的目标是将结构改造成下面的样子：</p>
+<pre><code>├── index.js
+├── app.js
+├── build
+│   └── ...
+├── controllers
+│   └── notes.js
+├── models
+│   └── note.js
+├── package-lock.json
+├── package.json
+├── utils
+│   ├── config.js
+│   ├── logger.js
+│   └── middleware.js  
+</code></pre>
+<p>让我们将所有向终端打印操作分离成单独的模块<em>utils&#x2F;logger.js</em>:</p>
+<pre><code class="js">const info = (...params) =&gt; &#123;
+  console.log(...params)
+&#125;
+
+const error = (...params) =&gt; &#123;
+  console.error(...params)
+&#125;
+
+module.exports = &#123;
+  info, error
+&#125;
+</code></pre>
+<p>为什么这样做：如果我们想要写日志到文件或者发送日志到像<a target="_blank" rel="noopener" href="https://www.graylog.org/">graylog</a>或者<a target="_blank" rel="noopener" href="https://papertrailapp.com/">papertrail</a>这样的外部日志设备，我们只用在一个地方修改代码。</p>
+<p>对启动应用的index.js文件的内容进行简化：</p>
+<pre><code class="js">const app = require(&#39;./app&#39;) // the actual Express application
+const config = require(&#39;./utils/config&#39;)
+const logger = require(&#39;./utils/logger&#39;)
+
+app.listen(config.PORT, () =&gt; &#123;
+  logger.info(`Server running on port $&#123;config.PORT&#125;`)
+&#125;)
+</code></pre>
+<p>index.js只是从app.js引入真正的应用并且启动应用。</p>
+<p>为什么这样做：这种结构的其中一个优点是现在可以在HTTP API调用层面测试应用而不用通过网络在HTTP层面进行调用，这样会让测试的执行更快。</p>
+<p>环境变量的处理提取到utils&#x2F;config.js:</p>
+<pre><code class="js">require(&#39;dotenv&#39;).config()
+
+const PORT = process.env.PORT
+const MONGODB_URI = process.env.MONGODB_URI
+
+module.exports = &#123;
+  MONGODB_URI,
+  PORT
+&#125;
+</code></pre>
+<p>路由处理器也要被移动到一个专门的模块。路由的事件处理器通常被叫做<em>controllers</em>，因为我们创建<em>controllers</em>目录。所有与notes相关的路由现在都在<em>controllers</em>目录下的notes.js模块中：</p>
+<pre><code class="js">//notes.js
+const notesRouter = require(&#39;express&#39;).Router()
+const Note = require(&#39;../models/note&#39;)
+
+notesRouter.get(&#39;/&#39;, (request, response) =&gt; &#123;
+  Note.find(&#123;&#125;).then(notes =&gt; &#123;
+    response.json(notes)
+  &#125;)
+&#125;)
+
+notesRouter.get(&#39;/:id&#39;, (request, response, next) =&gt; &#123;
+  Note.findById(request.params.id)
+    .then(note =&gt; &#123;
+      if (note) &#123;
+        response.json(note)
+      &#125; else &#123;
+        response.status(404).end()
+      &#125;
+    &#125;)
+    .catch(error =&gt; next(error))
+&#125;)
+
+notesRouter.post(&#39;/&#39;, (request, response, next) =&gt; &#123;
+  const body = request.body
+
+  const note = new Note(&#123;
+    content: body.content,
+    important: body.important || false,
+  &#125;)
+
+  note.save()
+    .then(savedNote =&gt; &#123;
+      response.json(savedNote)
+    &#125;)
+    .catch(error =&gt; next(error))
+&#125;)
+
+notesRouter.delete(&#39;/:id&#39;, (request, response, next) =&gt; &#123;
+  Note.findByIdAndRemove(request.params.id)
+    .then(() =&gt; &#123;
+      response.status(204).end()
+    &#125;)
+    .catch(error =&gt; next(error))
+&#125;)
+
+notesRouter.put(&#39;/:id&#39;, (request, response, next) =&gt; &#123;
+  const body = request.body
+
+  const note = &#123;
+    content: body.content,
+    important: body.important,
+  &#125;
+
+  Note.findByIdAndUpdate(request.params.id, note, &#123; new: true &#125;)
+    .then(updatedNote =&gt; &#123;
+      response.json(updatedNote)
+    &#125;)
+    .catch(error =&gt; next(error))
+&#125;)
+
+module.exports = notesRouter
+</code></pre>
+<p>在文件第一行我们创建了一个<a target="_blank" rel="noopener" href="http://expressjs.com/en/api.html#router">router</a>对象。router对像实际上就是一个中间件，可以用来在一个单独的地方定义”相关路由”，通常被放进自己的模块。</p>
+<p>修改app.js：</p>
+<pre><code class="js">const config = require(&#39;./utils/config&#39;)
+const express = require(&#39;express&#39;)
+const app = express()
+const cors = require(&#39;cors&#39;)
+const notesRouter = require(&#39;./controllers/notes&#39;)
+const middleware = require(&#39;./utils/middleware&#39;)
+const logger = require(&#39;./utils/logger&#39;)
+const mongoose = require(&#39;mongoose&#39;)
+
+mongoose.set(&#39;strictQuery&#39;, false)
+
+logger.info(&#39;connecting to&#39;, config.MONGODB_URI)
+
+mongoose.connect(config.MONGODB_URI)
+  .then(() =&gt; &#123;
+    logger.info(&#39;connected to MongoDB&#39;)
+  &#125;)
+  .catch((error) =&gt; &#123;
+    logger.error(&#39;error connecting to MongoDB:&#39;, error.message)
+  &#125;)
+
+app.use(cors())
+app.use(express.static(&#39;build&#39;))
+app.use(express.json())
+app.use(middleware.requestLogger)
+
+app.use(&#39;/api/notes&#39;, notesRouter)
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+
+module.exports = app
+</code></pre>
+<p>我们的自定义中间件被移动到一个新的<em>utils&#x2F;middleware.js</em>模块：</p>
+<pre><code class="js">const logger = require(&#39;./logger&#39;)
+
+const requestLogger = (request, response, next) =&gt; &#123;
+  logger.info(&#39;Method:&#39;, request.method)
+  logger.info(&#39;Path:  &#39;, request.path)
+  logger.info(&#39;Body:  &#39;, request.body)
+  logger.info(&#39;---&#39;)
+  next()
+&#125;
+
+const unknownEndpoint = (request, response) =&gt; &#123;
+  response.status(404).send(&#123; error: &#39;unknown endpoint&#39; &#125;)
+&#125;
+
+const errorHandler = (error, request, response, next) =&gt; &#123;
+  logger.error(error.message)
+
+  if (error.name === &#39;CastError&#39;) &#123;
+    return response.status(400).send(&#123; error: &#39;malformatted id&#39; &#125;)
+  &#125; else if (error.name === &#39;ValidationError&#39;) &#123;
+    return response.status(400).json(&#123; error: error.message &#125;)
+  &#125;
+
+  next(error)
+&#125;
+
+module.exports = &#123;
+  requestLogger,
+  unknownEndpoint,
+  errorHandler
+&#125;
+</code></pre>
+<p>与数据库建立连接的责任已经交给了app.js，models目录下的note.js只需要为notes定义Mongoose模式：</p>
+<pre><code class="js">const mongoose = require(&#39;mongoose&#39;)
+
+const noteSchema = new mongoose.Schema(&#123;
+  content: &#123;
+    type: String,
+    required: true,
+    minlength: 5
+  &#125;,
+  important: Boolean,
+&#125;)
+
+noteSchema.set(&#39;toJSON&#39;, &#123;
+  transform: (document, returnedObject) =&gt; &#123;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  &#125;
+&#125;)
+
+module.exports = mongoose.model(&#39;Note&#39;, noteSchema)
+</code></pre>
+<h4 id="测试Node应用"><a href="#测试Node应用" class="headerlink" title="测试Node应用"></a>测试Node应用</h4><p>在这门课程中我们使用<a target="_blank" rel="noopener" href="https://jestjs.io/">jest</a>测试库。</p>
+<p>安装jest：</p>
+<pre><code class="shell">npm install --save-dev jest
+</code></pre>
+<p>package.json中定义npm脚本：</p>
+<pre><code>&quot;test&quot;: &quot;jest --verbose&quot;
+</code></pre>
+<p>编写<em>tests&#x2F;reverse.test.js</em>:</p>
+<pre><code class="js">const reverse = require(&#39;../utils/for_testing&#39;).reverse
+//引入要测试的函数
+
+test(&#39;reverse of a&#39;, () =&gt; &#123;
+  const result = reverse(&#39;a&#39;)
+
+  expect(result).toBe(&#39;a&#39;)
+  //expect将result包装成一个对象，该对象提供一系列比较器函数，&#39;toBe&#39;就是其中一个
+&#125;)
+//test函数的第一个参数是对测试的描述，第二个函数是一个参数，定义了测试用例的功能
+
+test(&#39;reverse of react&#39;, () =&gt; &#123;
+  const result = reverse(&#39;react&#39;)
+
+  expect(result).toBe(&#39;tcaer&#39;)
+&#125;)
+
+test(&#39;reverse of releveler&#39;, () =&gt; &#123;
+  const result = reverse(&#39;releveler&#39;)
+
+  expect(result).toBe(&#39;releveler&#39;)
+&#125;)
+</code></pre>
+<p>此时ESLint会抱怨<em>test</em>和<em>expect</em>命令不存在，需要修改.eslintrc.js:</p>
+<pre><code class="js">module.exports = &#123;
+  &#39;env&#39;: &#123;
+    &#39;commonjs&#39;: true,
+    &#39;es2021&#39;: true,
+    &#39;node&#39;: true,
+
+    &#39;jest&#39;: true,
+  &#125;,
+  // ...
+&#125;
+</code></pre>
+<p>jest期望测试文件的名字都包含.test。</p>
+<h3 id="b-测试后端"><a href="#b-测试后端" class="headerlink" title="b. 测试后端"></a>b. 测试后端</h3><p>因为我们的应用后端相对简单，我们决定通过应用(包括数据库)的REST API来测试它。这种一个系统的多个组件被当成一组来测试的测试叫做<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Integration_testing">集成测试</a>。</p>
+<h4 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h4><p>Node的传统是用<em>NODE_ENV</em>环境变量来定义应用的执行模式。对于开发和测试定义不同的模式在实践中很常见。接下来让我们改变<em>package.json</em>中的scripts以让<em>NODE_ENV</em>在运行测试的时候得到值<em>test</em>:</p>
+<pre><code class="json">&#123;
+  // ...
+  &quot;scripts&quot;: &#123;
+
+    &quot;start&quot;: &quot;NODE_ENV=production node index.js&quot;,
+    &quot;dev&quot;: &quot;NODE_ENV=development nodemon index.js&quot;,
+    &quot;test&quot;: &quot;NODE_ENV=test jest --verbose --runInBand&quot;
+    &quot;build:ui&quot;: &quot;rm -rf build &amp;&amp; cd ../frontend/ &amp;&amp; npm run build &amp;&amp; cp -r build ../backend&quot;,
+    &quot;deploy&quot;: &quot;fly deploy&quot;,
+    &quot;deploy:full&quot;: &quot;npm run build:ui &amp;&amp; npm run deploy&quot;,
+    &quot;logs:prod&quot;: &quot;fly logs&quot;,
+    &quot;lint&quot;: &quot;eslint .&quot;,
+  &#125;,
+  // ...
+&#125;
+</code></pre>
+<p>jest的选项–runInBand的作用：防止jest并行地运行测试。</p>
+<p>我们在我们的scripts中指定应用的模式的方式有个小问题：在Windows上它不能工作。我们可以通过安装<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/cross-env">cross-env</a>包作为开发依赖更正这一问题：</p>
+<pre><code class="shell">npm install cross-env
+</code></pre>
+<p>使用方法：</p>
+<pre><code class="json">&#123;
+  &quot;scripts&quot;: &#123;
+    &quot;start&quot;: &quot;cross-env NODE_ENV=production node index.js&quot;,
+    &quot;dev&quot;: &quot;cross-env NODE_ENV=development nodemon index.js&quot;,
+    &quot;test&quot;: &quot;cross-env NODE_ENV=test jest --verbose --runInBand&quot;,
+  &#125;,
+&#125;
+</code></pre>
+<p>现在我们可以对定义应用配置的模块(<em>config.js</em>)做一点改变：</p>
+<pre><code class="js">require(&#39;dotenv&#39;).config()
+
+const PORT = process.env.PORT
+
+
+const MONGODB_URI = process.env.NODE_ENV === &#39;test&#39; 
+  ? process.env.TEST_MONGODB_URI
+  : process.env.MONGODB_URI
+
+module.exports = &#123;
+  MONGODB_URI,
+  PORT,
+&#125;
+</code></pre>
+<p><em>.env</em>文件对开发和测试有不同的变量：</p>
+<pre><code>MONGODB_URI=mongodb+srv://fullstack:&lt;password&gt;@cluster0.o1opl.mongodb.net/noteApp?retryWrites=true&amp;w=majority
+PORT=3001
+
+
+TEST_MONGODB_URI=mongodb+srv://fullstack:&lt;password&gt;@cluster0.o1opl.mongodb.net/testNoteApp?retryWrites=true&amp;w=majority
+</code></pre>
+<h4 id="supertest"><a href="#supertest" class="headerlink" title="supertest"></a>supertest</h4><p>使用<a target="_blank" rel="noopener" href="https://github.com/visionmedia/supertest">supertest</a>包来帮助我们写测试API的测试。</p>
+<p>将这个包安装成开发依赖：</p>
+<pre><code class="shell">npm install --save-dev supertest
+</code></pre>
+<p><em>tests&#x2F;note_api.test.js</em>:</p>
+<pre><code class="js">const mongoose = require(&#39;mongoose&#39;)
+const supertest = require(&#39;supertest&#39;)
+const app = require(&#39;../app&#39;)
+//注意这里引入app而不是index.js，因为supertest保证被测试的应用运行在一个暂时的端口
+
+const api = supertest(app)
+//api =&gt; superagent对象
+
+test(&#39;notes are returned as json&#39;, async () =&gt; &#123;
+  await api
+    .get(&#39;/api/notes&#39;)
+    .expect(200)
+    .expect(&#39;Content-Type&#39;, /application\/json/)
+&#125;)
+
+test(&#39;there are two notes&#39;, async () =&gt; &#123;
+  const response = await api.get(&#39;/api/notes&#39;)
+
+  expect(response.body).toHaveLength(2)
+&#125;)
+
+test(&#39;the first note is about HTTP methods&#39;, async () =&gt; &#123;
+  const response = await api.get(&#39;/api/notes&#39;)
+
+  expect(response.body[0].content).toBe(&#39;HTML is easy&#39;)
+&#125;)
+
+afterAll(async () =&gt; &#123;
+  await mongoose.connection.close()
+&#125;)
+</code></pre>
+<p>输出关于HTTP请求的信息的中间件会让测试执行的输出变得杂乱，让我们修改logger以让它在测试模式不输出信息到终端：</p>
+<pre><code class="js">const info = (...params) =&gt; &#123;
+
+  if (process.env.NODE_ENV !== &#39;test&#39;) &#123; 
+    console.log(...params)
+  &#125;
+&#125;
+
+const error = (...params) =&gt; &#123;
+
+  if (process.env.NODE_ENV !== &#39;test&#39;) &#123; 
+    console.error(...params)
+  &#125;
+&#125;
+
+module.exports = &#123;
+  info, error
+&#125;
+</code></pre>
+<h4 id="在测试前初始化数据库"><a href="#在测试前初始化数据库" class="headerlink" title="在测试前初始化数据库"></a>在测试前初始化数据库</h4><p>让我们使用<a target="_blank" rel="noopener" href="https://jestjs.io/docs/en/api.html#beforeeachfn-timeout">beforeEach</a>方法在每一次测试前初始化数据库：</p>
+<pre><code class="js">const mongoose = require(&#39;mongoose&#39;)
+const supertest = require(&#39;supertest&#39;)
+const app = require(&#39;../app&#39;)
+const api = supertest(app)
+
+const Note = require(&#39;../models/note&#39;)
+
+
+const initialNotes = [
+  &#123;
+    content: &#39;HTML is easy&#39;,
+    important: false,
+  &#125;,
+  &#123;
+    content: &#39;Browser can execute only JavaScript&#39;,
+    important: true,
+  &#125;,
+]
+
+
+beforeEach(async () =&gt; &#123;
+  await Note.deleteMany(&#123;&#125;)
+  let noteObject = new Note(initialNotes[0])
+  await noteObject.save()
+  noteObject = new Note(initialNotes[1])
+  await noteObject.save()
+&#125;)
+// ...
+</code></pre>
+<h4 id="让测试一个接一个的执行"><a href="#让测试一个接一个的执行" class="headerlink" title="让测试一个接一个的执行"></a>让测试一个接一个的执行</h4><p><code>npm test</code>命令会执行所有测试，为了一次只测试一个或两个功能，一个好的主意是在<code>npm test</code>命令后用参数指明要执行的测试：</p>
+<pre><code class="shell">npm test -- tests/note_api.test.js
+</code></pre>
+<p><code>-t</code>选项可以用来执行特定名字的测试：</p>
+<pre><code class="shell">npm test -- -t &quot;a specific note is within the returned notes&quot;
+npm test -- -t &#39;notes&#39; //名称包含notes的测试都会被执行
+</code></pre>
+<h4 id="async-x2F-await"><a href="#async-x2F-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h4><p>async&#x2F;await在ES7引入，可以让返回promise的异步函数在使用时可以以一种看起来像同步代码的方式:</p>
+<pre><code class="js">Note.find(&#123;&#125;)
+  .then(notes =&gt; &#123;
+    return notes[0].deleteOne()
+  &#125;)
+  .then(response =&gt; &#123;
+    console.log(&#39;the first note is removed&#39;)
+    // more code here
+  &#125;)
+</code></pre>
+<p>&#x3D;&#x3D;&#x3D;&gt;</p>
+<pre><code class="js">const notes = await Note.find(&#123;&#125;)
+const response = await notes[0].deleteOne()
+
+console.log(&#39;the first note is removed&#39;)
+</code></pre>
+<p>await关键字并不是可以随处使用的，await只能在<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async</a>函数中使用。</p>
+<h4 id="async-x2F-await错误处理"><a href="#async-x2F-await错误处理" class="headerlink" title="async&#x2F;await错误处理"></a>async&#x2F;await错误处理</h4><p>对于async&#x2F;await推荐的异常处理方式是陈旧但让人熟悉的<em>try&#x2F;catch</em>机制：</p>
+<pre><code class="js">notesRouter.post(&#39;/&#39;, async (request, response, next) =&gt; &#123;
+  const body = request.body
+
+  const note = new Note(&#123;
+    content: body.content,
+    important: body.important || false,
+  &#125;)
+
+  try &#123;
+    const savedNote = await note.save()
+    response.status(201).json(savedNote)
+  &#125; catch(exception) &#123;
+    next(exception)
+  &#125;
+&#125;)
+</code></pre>
+<h4 id="优化beforeEach函数"><a href="#优化beforeEach函数" class="headerlink" title="优化beforeEach函数"></a>优化beforeEach函数</h4><pre><code class="js">beforeEach(async () =&gt; &#123;
+  await Note.deleteMany(&#123;&#125;);
+  let noteObject = new Note(helper.initialNotes[0]);
+  await noteObject.save();
+  noteObject = new Note(helper.initialNotes[1]);
+  await noteObject.save();
+&#125;);
+</code></pre>
+<p>该函数保存<em>helper.initialNotes</em>数组中前两个note到数据库中。但是保存操作其实可以简化：</p>
+<pre><code class="js">beforeEach(async () =&gt; &#123;
+  await Note.deleteMany(&#123;&#125;)
+  console.log(&#39;cleared&#39;)
+
+  helper.initialNotes.forEach(async (note) =&gt; &#123;
+    let noteObject = new Note(note)
+    await noteObject.save()
+    console.log(&#39;saved&#39;)
+  &#125;)
+  console.log(&#39;done&#39;)
+&#125;)
+</code></pre>
+<p>但是这样的写法有严重的问题：forEach注册了多次async函数，beforeEach并不会等这些函数(即添加note的代码)结束再执行<code>console.log(&#39;saved&#39;)</code>，所以可能在beforeEach执行结束，下一次函数开始执行之后note们都还没被保存到数据库。</p>
+<p>解决办法之一是使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">Promise.all</a>方法：</p>
+<pre><code class="js">beforeEach(async () =&gt; &#123;
+  await Note.deleteMany(&#123;&#125;)
+
+  const noteObjects = helper.initialNotes
+    .map(note =&gt; new Note(note))
+  const promiseArray = noteObjects.map(note =&gt; note.save())
+  await Promise.all(promiseArray)
+&#125;)
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">Promise.all</a>并行执行它接收到的所有promise，所以如果这些promise的执行顺序需要固定，Promise.all可能不再适用。像这样的情况可以让操作在<em>for…of</em>块中执行，这样可以保证特定的顺序：</p>
+<pre><code class="js">beforeEach(async () =&gt; &#123;
+  await Note.deleteMany(&#123;&#125;)
+
+  for (let note of helper.initialNotes) &#123;
+    let noteObject = new Note(note)
+    await noteObject.save()
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="c-用户管理"><a href="#c-用户管理" class="headerlink" title="c. 用户管理"></a>c. 用户管理</h3><p>如果我们使用关系数据库的话，每一个note会包含一个<strong>引用键</strong>用于引用创建它的用户。在文档数据库中我们可以做相同的事。</p>
+<p>在note这个示例项目中我们将用户创建的note的id存到用户的文档中。让我们在models&#x2F;user.js文件中定义表示用户的模型：</p>
+<pre><code class="js">const mongoose = require(&#39;mongoose&#39;)
+
+const userSchema = new mongoose.Schema(&#123;
+  username: String,
+  name: String,
+  passwordHash: String,
+  notes: [
+    &#123;
+      type: mongoose.Schema.Types.ObjectId,
+      ref: &#39;Note&#39;//Mongo实际上不知道这是一个引用note的字段，这个语法完全是由mongoose定义的。
+    &#125;
+  ],
+&#125;)
+
+userSchema.set(&#39;toJSON&#39;, &#123;
+  transform: (document, returnedObject) =&gt; &#123;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+    // the passwordHash should not be revealed
+    delete returnedObject.passwordHash
+  &#125;
+&#125;)
+
+const User = mongoose.model(&#39;User&#39;, userSchema)
+
+module.exports = User
+</code></pre>
+<p>扩展我们的note模式来让note包含创建它的用户的信息：</p>
+<pre><code class="js">const noteSchema = new mongoose.Schema(&#123;
+  content: &#123;
+    type: String,
+    required: true,
+    minlength: 5
+  &#125;,
+  important: Boolean,
+
+  user: &#123;
+    type: mongoose.Schema.Types.ObjectId,
+    ref: &#39;User&#39;
+  &#125;
+&#125;)
+</code></pre>
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><p>密码哈希字段是将单向哈希函数应用到用户密码后的输出，存储明文密码到数据库绝对不合适。</p>
+<p>让我们安装<a target="_blank" rel="noopener" href="https://github.com/kelektiv/node.bcrypt.js">bcrypt</a>包用来生成密码哈希：</p>
+<pre><code class="shell">npm install bcrypt
+</code></pre>
+<p>定义单独的路由器用来处理关于user的请求，文件命名为<em>controllers&#x2F;users.js</em>：</p>
+<pre><code class="js">const bcrypt = require(&#39;bcrypt&#39;)
+const usersRouter = require(&#39;express&#39;).Router()
+const User = require(&#39;../models/user&#39;)
+
+usersRouter.post(&#39;/&#39;, async (request, response) =&gt; &#123;
+  const &#123; username, name, password &#125; = request.body
+
+  const saltRounds = 10
+  const passwordHash = await bcrypt.hash(password, saltRounds)
+
+  const user = new User(&#123;
+    username,
+    name,
+    passwordHash,
+  &#125;)
+
+  const savedUser = await user.save()
+
+  response.status(201).json(savedUser)
+&#125;)
+
+module.exports = usersRouter
+</code></pre>
+<p>记得在app中引入这个路由器：</p>
+<pre><code class="js">const usersRouter = require(&#39;./controllers/users&#39;)
+
+// ...
+
+app.use(&#39;/api/users&#39;, usersRouter)
+</code></pre>
+<p>测试代码省略。</p>
+<p>Mongoose没有内置的用于验证字段唯一性的验证器。可以使用<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mongoose-unique-validator">mongoose-unique-validator</a>库。首先安装它：</p>
+<pre><code class="shell">npm install mongoose-unique-validator
+</code></pre>
+<p>然后扩展我们的代码：</p>
+<pre><code class="js">const mongoose = require(&#39;mongoose&#39;)
+const uniqueValidator = require(&#39;mongoose-unique-validator&#39;)
+
+const userSchema = mongoose.Schema(&#123;
+  username: &#123;
+    type: String,
+    required: true,
+    unique: true //注意这个对象属性！！！
+  &#125;,
+  name: String,
+  passwordHash: String,
+  notes: [
+    &#123;
+      type: mongoose.Schema.Types.ObjectId,
+      ref: &#39;Note&#39;
+    &#125;
+  ],
+&#125;)
+
+userSchema.plugin(uniqueValidator)
+</code></pre>
+<h4 id="创建新note"><a href="#创建新note" class="headerlink" title="创建新note"></a>创建新note</h4><p>因为我们在应用层引入了依赖关系，即新创建的note要被赋给创建它的用户。让我们扩展我们的实现：</p>
+<pre><code class="js">const User = require(&#39;../models/user&#39;)
+
+//...
+
+notesRouter.post(&#39;/&#39;, async (request, response) =&gt; &#123;
+  const body = request.body
+
+
+  const user = await User.findById(body.userId)
+
+  const note = new Note(&#123;
+    content: body.content,
+    important: body.important === undefined ? false : body.important,
+
+    user: user.id
+  &#125;)
+
+  const savedNote = await note.save()
+
+  user.notes = user.notes.concat(savedNote._id)
+  await user.save()
+  
+  response.json(savedNote)
+&#125;)
+</code></pre>
+<h4 id="Populate"><a href="#Populate" class="headerlink" title="Populate"></a>Populate</h4><p>Mongoose可以实现类似关系数据库中连接查询的功能，Mongoose通过多次查询完成这样的功能，这与关系数据库中连接查询的事务性不同，事务性意味着查询在执行时数据库的状态不会改变。而使用Mongoose中的连接查询就不能保证被连接的集的状态是一致的。</p>
+<p>Mongoose连接使用<a target="_blank" rel="noopener" href="http://mongoosejs.com/docs/populate.html">populate</a>方法完成：</p>
+<pre><code class="js">usersRouter.get(&#39;/&#39;, async (request, response) =&gt; &#123;
+
+  const users = await User
+    .find(&#123;&#125;).populate(&#39;notes&#39;)
+
+  response.json(users)
+&#125;)
+</code></pre>
+<p>我们还可以在populate时选择我们想要的字段：</p>
+<pre><code class="js">usersRouter.get(&#39;/&#39;, async (request, response) =&gt; &#123;
+  const users = await User
+    .find(&#123;&#125;).populate(&#39;notes&#39;, &#123; content: 1, important: 1 &#125;)
+
+  response.json(users)
+&#125;)
+</code></pre>
+<p>理解这一点很重要：数据库并不知道存储在notes的user字段的id引用user集中的文档。</p>
+<p>Mongoose的<em>populate</em>方法的功能是基于这样一个事实：我们在Mongoose模式中用ref选项定义了引用类型：</p>
+<pre><code class="js">const noteSchema = new mongoose.Schema(&#123;
+  content: &#123;
+    type: String,
+    required: true,
+    minlength: 5
+  &#125;,
+  important: Boolean,
+  user: &#123;
+    type: mongoose.Schema.Types.ObjectId,
+    ref: &#39;User&#39;
+  &#125;
+&#125;)
+</code></pre>
+<h3 id="d-Token认证"><a href="#d-Token认证" class="headerlink" title="d. Token认证"></a>d. Token认证</h3><p>现在要为后端实现<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/the-ins-and-outs-of-token-based-authentication#how-token-based-works">基于token的认证</a>，可以用一张序列图来描绘基于token认证的规则：</p>
+<p><img src="/..%5Cimages%5CFullstack%5Cpart4%5C%E5%9F%BA%E4%BA%8Etoken%E8%AE%A4%E8%AF%81%E5%BA%8F%E5%88%97%E5%9B%BE.png" alt="基于token认证序列图"></p>
+<p>首先实现登入功能。安装<a target="_blank" rel="noopener" href="https://github.com/auth0/node-jsonwebtoken">jsonwebtoken</a>库，用来生成<a target="_blank" rel="noopener" href="https://jwt.io/">JSON web tokens</a>：</p>
+<pre><code class="shell">npm install jsonwebtoken
+</code></pre>
+<p>登陆功能的代码放在controllers&#x2F;login.js中：</p>
+<pre><code class="js">const jwt = require(&#39;jsonwebtoken&#39;)
+const bcrypt = require(&#39;bcrypt&#39;)
+const loginRouter = require(&#39;express&#39;).Router()
+const User = require(&#39;../models/user&#39;)
+
+loginRouter.post(&#39;/&#39;, async (request, response) =&gt; &#123;
+  const &#123; username, password &#125; = request.body
+
+  const user = await User.findOne(&#123; username &#125;)
+  const passwordCorrect = user === null
+    ? false
+    : await bcrypt.compare(password, user.passwordHash)
+
+  if (!(user &amp;&amp; passwordCorrect)) &#123;
+    return response.status(401).json(&#123;
+      error: &#39;invalid username or password&#39;
+    &#125;)
+  &#125;
+
+  const userForToken = &#123;
+    username: user.username,
+    id: user._id,
+  &#125;
+
+  const token = jwt.sign(userForToken, process.env.SECRET)
+
+  response
+    .status(200)
+    .send(&#123; token, username: user.username, name: user.name &#125;)
+&#125;)
+
+module.exports = loginRouter
+</code></pre>
+<h4 id="仅限已登入的用户创建新note"><a href="#仅限已登入的用户创建新note" class="headerlink" title="仅限已登入的用户创建新note"></a>仅限已登入的用户创建新note</h4><p>有几种从浏览器发送token到服务器的方法，这里我们使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization">Authorization</a>头部，该头部也指明使用了哪一种 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Authentication_schemes">认证模式</a>。</p>
+<p><em>Bearer</em>模式适合我们的需求。</p>
+<p>在实践中这意味着如果token是字符串<code>eyJhbGciOiJIUzI1NiIsInR5c2VybmFtZSI6Im1sdXVra2FpIiwiaW</code>，认证头部的值将是：</p>
+<pre><code>Bearer eyJhbGciOiJIUzI1NiIsInR5c2VybmFtZSI6Im1sdXVra2FpIiwiaW
+</code></pre>
+<p>创建新note的代码需要改变一下：</p>
+<pre><code class="js">const jwt = require(&#39;jsonwebtoken&#39;)
+
+// ...
+
+const getTokenFrom = request =&gt; &#123;
+  const authorization = request.get(&#39;authorization&#39;)
+  if (authorization &amp;&amp; authorization.startsWith(&#39;Bearer &#39;)) &#123;
+    return authorization.replace(&#39;Bearer &#39;, &#39;&#39;)
+  &#125;
+  return null
+&#125;
+
+notesRouter.post(&#39;/&#39;, async (request, response) =&gt; &#123;
+  const body = request.body
+
+  const decodedToken = jwt.verify(getTokenFrom(request), process.env.SECRET)
+  if (!decodedToken.id) &#123;
+    return response.status(401).json(&#123; error: &#39;token invalid&#39; &#125;)
+  &#125;
+  const user = await User.findById(decodedToken.id)
+
+  const note = new Note(&#123;
+    content: body.content,
+    important: body.important === undefined ? false : body.important,
+    user: user._id
+  &#125;)
+
+  const savedNote = await note.save()
+  user.notes = user.notes.concat(savedNote._id)
+  await user.save()
+
+  response.json(savedNote)
+&#125;)
+</code></pre>
+<p>如果token不存在或者token无效，异常<em>JsonWebTokenError</em>被抛出。我们需要扩展错误处理中间件：</p>
+<pre><code class="js">if (error.name ===  &#39;JsonWebTokenError&#39;) &#123;
+    return response.status(401).json(&#123; error: error.message &#125;)
+&#125;
+</code></pre>
+<h4 id="基于token认证的问题"><a href="#基于token认证的问题" class="headerlink" title="基于token认证的问题"></a>基于token认证的问题</h4><p>token认证实现起来非常简单，但是它有一个问题。一旦API使用者，例如一个React App获得一个token，API会对token持有者盲目地信任。如果token持有者的访问权限应该被撤销呢？</p>
+<p>解决该问题的方法有两种，简单的一种是限制一个token的有效期：</p>
+<pre><code class="js">loginRouter.post(&#39;/&#39;, async (request, response) =&gt; &#123;
+  // other code
+  // token expires in 60*60 seconds, that is, in one hour
+  const token = jwt.sign(
+    userForToken, 
+    process.env.SECRET,
+    &#123; expiresIn: 60*60 &#125;
+  )
+  // other code
+&#125;)
+</code></pre>
+<p>这种也需要扩展我们的错误处理中间件：</p>
+<pre><code class="js">if (error.name === &#39;TokenExpiredError&#39;) &#123;
+    return response.status(401).json(&#123;
+      error: &#39;token expired&#39;
+    &#125;)
+&#125;
+</code></pre>
+<p>另一种解决方法是将每个token相关的信息存到后端数据库中，并且检验每一次API请求，看看是否与token对应的访问权限仍然有效。这种模式下访问权限可以随时被取消。这种解决方法通常被叫做服务端session。</p>
+<h2 id="part5"><a href="#part5" class="headerlink" title="part5"></a>part5</h2><h3 id="a-前端登陆"><a href="#a-前端登陆" class="headerlink" title="a. 前端登陆"></a>a. 前端登陆</h3><h4 id="处理登陆"><a href="#处理登陆" class="headerlink" title="处理登陆"></a>处理登陆</h4><h2 id="to-do"><a href="#to-do" class="headerlink" title="to do"></a>to do</h2><h3 id="exer"><a href="#exer" class="headerlink" title="exer"></a>exer</h3><p>4.6 4.7</p>
+<p>4.20…</p>
+<h3 id="工具-x2F-库整理"><a href="#工具-x2F-库整理" class="headerlink" title="工具&#x2F;库整理"></a>工具&#x2F;库整理</h3><ul>
+<li>json-server</li>
+<li>eslint软件&#x2F;eslint插件</li>
+<li>REST Client</li>
+<li>cors</li>
+<li>dotenv</li>
+<li>express</li>
+<li>mongoose</li>
+<li>morgan</li>
+<li>jest</li>
+<li>nodemon</li>
+<li>cross-env</li>
+<li>supertest, superagent</li>
+<li>express-async-errors</li>
+<li>bcrypt</li>
+<li>mongoose-unique-validator</li>
+<li>jsonwebtoken</li>
+<li>expresss-jwt</li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><em></em><a class="button is-default" href="/2023/08/25/CS61B/" title="CS 61B学习记录"><span class="has-text-weight-semibold">下一页: CS 61B学习记录</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="fertfest/fertfest.github.io" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/fertfest"><i class="iconfont icon-github"></i></a><!-- Ins--><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--></section><p><span>Copyright ©</span><span> fertfest 2023</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span>清醒时做事，迷茫时读书，独处时思考，烦躁时运动，焦虑时行动，得意时淡然，失意时坦然，忙碌时专注，闲暇时蓄力。</span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
